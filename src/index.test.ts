@@ -594,10 +594,16 @@ This is test skill content.`
 
     // Extract available skill names from description
     const description = listResult.tools[0].description;
-    const match = description.match(/Available skills: ([^\n]+)/);
+    const match = description.match(/Available skills:\n((?:- .+\n?)+)/);
 
     if (match) {
-      const skillNames = match[1].split(", ").map((s: string) => s.trim());
+      const skillNames = match[1]
+        .split("\n")
+        .map((line: string) => line.replace(/^-/u, "").trim())
+        .filter(Boolean)
+        .map((line: string) => line.split(":")[0]?.trim())
+        .filter(Boolean);
+
       const testSkillName = skillNames[0]; // Use the first available skill
 
       const callToolHandler = mockServer.handlers.get(CallToolRequestSchema);
@@ -612,10 +618,87 @@ This is test skill content.`
 
       expect(result.content).toBeDefined();
       expect(result.content[0].type).toBe("text");
-      expect(result.content[0].text).toContain(testSkillName);
+      const responseText = result.content[0].text;
+      expect(responseText).toContain(`# Skill: ${testSkillName}`);
+      expect(responseText).toContain("**Description:**");
+      expect(responseText).toContain("**Source:**");
+      expect(responseText).toContain("---");
     } else {
       // No skills available, this test should pass
       expect(true).toBe(true);
+    }
+  });
+
+  it("should fall back to skill name when metadata cannot be loaded", async () => {
+    server = new LocalSkillsServer();
+
+    const serverInternal = server as any;
+    const mockServer = serverInternal.server;
+    const skillLoader = serverInternal.skillLoader;
+
+    const { ListToolsRequestSchema } = await import(
+      "@modelcontextprotocol/sdk/types.js"
+    );
+
+    const discoverSpy = vi
+      .spyOn(skillLoader, "discoverSkills")
+      .mockResolvedValue(["broken-skill"]);
+    const metadataSpy = vi
+      .spyOn(skillLoader, "getSkillMetadata")
+      .mockRejectedValue(new Error("metadata boom"));
+
+    try {
+      const listToolsHandler = mockServer.handlers.get(ListToolsRequestSchema);
+      const result = await listToolsHandler();
+
+      expect(result.tools[0].description).toContain("- broken-skill");
+    } finally {
+      discoverSpy.mockRestore();
+      metadataSpy.mockRestore();
+    }
+  });
+
+  it("should truncate long skill descriptions in tool metadata", async () => {
+    server = new LocalSkillsServer();
+
+    const serverInternal = server as any;
+    const mockServer = serverInternal.server;
+    const skillLoader = serverInternal.skillLoader;
+
+    const { ListToolsRequestSchema } = await import(
+      "@modelcontextprotocol/sdk/types.js"
+    );
+
+    const longDescription = "A".repeat(250);
+
+    const discoverSpy = vi
+      .spyOn(skillLoader, "discoverSkills")
+      .mockResolvedValue(["detailed-skill"]);
+    const metadataSpy = vi
+      .spyOn(skillLoader, "getSkillMetadata")
+      .mockResolvedValue({
+        name: "detailed-skill",
+        description: longDescription,
+        source: "/fake/path",
+      });
+
+    try {
+      const listToolsHandler = mockServer.handlers.get(ListToolsRequestSchema);
+      const result = await listToolsHandler();
+      const description = result.tools[0].description;
+
+      const line = description
+        .split("\n")
+        .find((entry: string) => entry.startsWith("- detailed-skill"));
+
+      expect(line).toBeDefined();
+
+      const detail = line!.slice(line!.indexOf(":") + 2);
+      expect(detail.length).toBeLessThanOrEqual(200);
+      expect(detail.endsWith("...")).toBe(true);
+    } finally {
+      discoverSpy.mockRestore();
+      metadataSpy.mockRestore();
     }
   });
 
