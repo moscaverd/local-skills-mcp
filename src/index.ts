@@ -249,6 +249,21 @@ export class LocalSkillsServer {
                 description:
                   "Optional timeout per query in seconds (defaults to 120)",
               },
+              holdout: {
+                type: "number",
+                description:
+                  "Optional holdout fraction for run_loop test split (defaults to 0.4, use 0 to disable holdout)",
+              },
+              trigger_threshold: {
+                type: "number",
+                description:
+                  "Optional trigger-rate threshold for pass/fail decisions (defaults to 0.5)",
+              },
+              description_override: {
+                type: "string",
+                description:
+                  "Optional starting description override for what-if optimization without editing SKILL.md first",
+              },
               model: {
                 type: "string",
                 description:
@@ -355,6 +370,12 @@ export class LocalSkillsServer {
         runs_per_query: args?.runs_per_query,
         // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
         timeout_seconds: args?.timeout_seconds,
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
+        holdout: args?.holdout,
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
+        trigger_threshold: args?.trigger_threshold,
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
+        description_override: args?.description_override,
         // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
         model: args?.model,
       },

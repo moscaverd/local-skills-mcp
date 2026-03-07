@@ -288,6 +288,9 @@ Use these MCP tools to iterate quickly on a skill:
      - `num_workers` (optional, defaults to 1 for stable routing measurements)
      - `runs_per_query` (optional, defaults to 1)
      - `timeout_seconds` (optional, defaults to 120)
+     - `holdout` (optional, defaults to 0.4; use 0 to disable holdout split)
+     - `trigger_threshold` (optional, defaults to 0.5)
+     - `description_override` (optional, evaluate an alternate description without editing SKILL.md first)
      - `model` (optional)
 
 Recommended iteration cycle:

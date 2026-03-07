@@ -28,6 +28,9 @@ export interface EvaluateSkillInput {
   num_workers?: number;
   runs_per_query?: number;
   timeout_seconds?: number;
+  holdout?: number;
+  trigger_threshold?: number;
+  description_override?: string;
 }
 
 export interface EvaluateSkillResult {
@@ -264,6 +267,24 @@ export async function evaluateSkill(
     Number.isFinite(timeoutCandidate) && timeoutCandidate > 0
       ? Math.floor(timeoutCandidate)
       : 120;
+  const holdoutCandidate =
+    input.holdout ??
+    Number.parseFloat(process.env.EVALUATE_SKILL_HOLDOUT ?? "0.4");
+  const holdout =
+    Number.isFinite(holdoutCandidate) &&
+    holdoutCandidate >= 0 &&
+    holdoutCandidate <= 1
+      ? holdoutCandidate
+      : 0.4;
+  const triggerThresholdCandidate =
+    input.trigger_threshold ??
+    Number.parseFloat(process.env.EVALUATE_SKILL_TRIGGER_THRESHOLD ?? "0.5");
+  const triggerThreshold =
+    Number.isFinite(triggerThresholdCandidate) &&
+    triggerThresholdCandidate >= 0 &&
+    triggerThresholdCandidate <= 1
+      ? triggerThresholdCandidate
+      : 0.5;
 
   let args: string[];
   if (prerequisites.runLoopInvocation === "module") {
@@ -278,6 +299,10 @@ export async function evaluateSkill(
       model,
       "--report",
       "none",
+      "--trigger-threshold",
+      String(triggerThreshold),
+      "--holdout",
+      String(holdout),
       "--num-workers",
       String(numWorkers),
       "--runs-per-query",
@@ -286,6 +311,9 @@ export async function evaluateSkill(
       String(timeoutSeconds),
     ];
 
+    if (input.description_override) {
+      args.push("--description", input.description_override);
+    }
     if (typeof input.max_iterations === "number") {
       args.push("--max-iterations", String(input.max_iterations));
     }
