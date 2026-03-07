@@ -413,8 +413,14 @@ This is test skill content.`
     const result = await listToolsHandler();
 
     expect(result.tools).toBeDefined();
-    expect(result.tools).toHaveLength(1);
+    expect(result.tools.length).toBeGreaterThanOrEqual(3);
     expect(result.tools[0].name).toBe("get_skill");
+    expect(result.tools.some((t: any) => t.name === "validate_skill")).toBe(
+      true
+    );
+    expect(result.tools.some((t: any) => t.name === "evaluate_skill")).toBe(
+      true
+    );
     // Should contain either test-skill or available skills message
     expect(
       result.tools[0].description.includes("test-skill") ||
@@ -669,7 +675,7 @@ This is test skill content.`
       "@modelcontextprotocol/sdk/types.js"
     );
 
-    const longDescription = "A".repeat(250);
+    const longDescription = "A".repeat(1100);
 
     const discoverSpy = vi
       .spyOn(skillLoader, "discoverSkills")
@@ -694,7 +700,7 @@ This is test skill content.`
       expect(line).toBeDefined();
 
       const detail = line!.slice(line!.indexOf(":") + 2);
-      expect(detail.length).toBeLessThanOrEqual(200);
+      expect(detail.length).toBeLessThanOrEqual(1024);
       expect(detail.endsWith("...")).toBe(true);
     } finally {
       discoverSpy.mockRestore();

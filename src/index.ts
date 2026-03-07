@@ -12,10 +12,13 @@ import fs from "fs";
 import os from "os";
 import { fileURLToPath } from "url";
 import { SkillLoader } from "./skill-loader.js";
+import { validateSkillFile } from "./skill-validator.js";
+import { evaluateSkill } from "./eval-runner.js";
 
 // Get version from package.json (single source of truth)
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+const REPO_ROOT = path.join(__dirname, "..");
 // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 const packageJson = JSON.parse(
   fs.readFileSync(path.join(__dirname, "../package.json"), "utf-8")
@@ -166,10 +169,10 @@ export class LocalSkillsServer {
         for (const skillName of skillNames) {
           try {
             const metadata = await this.skillLoader.getSkillMetadata(skillName);
-            // Truncate description if too long (max 200 chars)
+            // Truncate description if too long (max 1024 chars)
             let description = metadata.description;
-            if (description.length > 200) {
-              description = description.substring(0, 197) + "...";
+            if (description.length > 1024) {
+              description = description.substring(0, 1021) + "...";
             }
             skillsWithDescriptions.push(`- ${skillName}: ${description}`);
           } catch {
@@ -196,6 +199,36 @@ export class LocalSkillsServer {
             required: ["skill_name"],
           },
         },
+        {
+          name: "validate_skill",
+          description:
+            "Validates a SKILL.md file against name/description/frontmatter rules and returns errors + warnings.",
+          inputSchema: {
+            type: "object",
+            properties: {
+              skill_name: {
+                type: "string",
+                description: "The skill directory name to validate",
+              },
+            },
+            required: ["skill_name"],
+          },
+        },
+        {
+          name: "evaluate_skill",
+          description:
+            "Runs Anthropic eval loop for a skill via Python run_loop.py (requires python, anthropic package, and ANTHROPIC_API_KEY).",
+          inputSchema: {
+            type: "object",
+            properties: {
+              skill_name: { type: "string" },
+              eval_set_path: { type: "string" },
+              max_iterations: { type: "number" },
+              model: { type: "string" },
+            },
+            required: ["skill_name"],
+          },
+        },
       ];
 
       return { tools };
@@ -207,6 +240,10 @@ export class LocalSkillsServer {
         switch (request.params.name) {
           case "get_skill":
             return await this.handleGetSkill(request.params.arguments);
+          case "validate_skill":
+            return await this.handleValidateSkill(request.params.arguments);
+          case "evaluate_skill":
+            return await this.handleEvaluateSkill(request.params.arguments);
 
           default:
             throw new Error(`Unknown tool: ${request.params.name}`);
@@ -224,6 +261,73 @@ export class LocalSkillsServer {
         };
       }
     });
+  }
+
+  private resolveSkillFilePath(skillName: string): string | null {
+    for (let i = SKILLS_DIRS.length - 1; i >= 0; i--) {
+      const candidate = path.join(SKILLS_DIRS[i], skillName, "SKILL.md");
+      if (fs.existsSync(candidate)) {
+        return candidate;
+      }
+    }
+    return null;
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  private async handleValidateSkill(args: any) {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
+    const skillName = args?.skill_name;
+    if (!skillName) {
+      throw new Error("skill_name is required");
+    }
+
+    const skillFilePath = this.resolveSkillFilePath(skillName as string);
+    if (!skillFilePath) {
+      throw new Error(`Skill "${skillName}" not found.`);
+    }
+
+    const result = await validateSkillFile(skillFilePath);
+
+    return {
+      content: [
+        {
+          type: "text",
+          text: JSON.stringify(result, null, 2),
+        },
+      ],
+    };
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  private async handleEvaluateSkill(args: any) {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
+    const skillName = args?.skill_name;
+    if (!skillName) {
+      throw new Error("skill_name is required");
+    }
+
+    const result = await evaluateSkill(
+      {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+        skill_name: skillName,
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
+        eval_set_path: args?.eval_set_path,
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
+        max_iterations: args?.max_iterations,
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
+        model: args?.model,
+      },
+      REPO_ROOT
+    );
+
+    return {
+      content: [
+        {
+          type: "text",
+          text: JSON.stringify(result, null, 2),
+        },
+      ],
+    };
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

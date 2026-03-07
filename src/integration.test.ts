@@ -9,6 +9,24 @@ import os from "os";
 // Increase max listeners to prevent warnings during tests
 process.setMaxListeners(20);
 
+function extractAvailableSkills(description?: string): string[] {
+  if (!description) {
+    return [];
+  }
+
+  const match = description.match(/Available skills:\n((?:- .+\n?)+)/);
+  if (!match) {
+    return [];
+  }
+
+  return match[1]
+    .trim()
+    .split("\n")
+    .map((line) => line.replace(/^-\s+/, ""))
+    .map((line) => line.split(":")[0]?.trim())
+    .filter((line): line is string => Boolean(line));
+}
+
 /**
  * Safely remove a directory with retries for Windows file locking issues.
  * Windows can be slower to release file handles, causing EBUSY errors.
@@ -217,10 +235,7 @@ It provides different guidance.`
       const getSkillTool = listResponse.tools.find(
         (t) => t.name === "get_skill"
       );
-      const match = getSkillTool?.description?.match(
-        /Available skills: ([^\n]+)/
-      );
-      availableSkills = match ? match[1].split(", ").map((s) => s.trim()) : [];
+      availableSkills = extractAvailableSkills(getSkillTool?.description);
     });
 
     it("should retrieve a skill successfully", async () => {
@@ -451,11 +466,9 @@ It provides different guidance.`
       // Get list of available skills
       const listResponse = await client.listTools();
       const tool = listResponse.tools.find((t) => t.name === "get_skill");
-      const match = tool?.description?.match(/Available skills: ([^\n]+)/);
+      const skills = extractAvailableSkills(tool?.description);
 
-      if (match) {
-        const skills = match[1].split(", ").map((s) => s.trim());
-
+      if (skills.length > 0) {
         // Verify we can retrieve each skill
         for (const skillName of skills.slice(0, 3)) {
           // Test first 3 to keep it fast
@@ -536,10 +549,7 @@ It provides different guidance.`
       const getSkillTool = listResponse.tools.find(
         (t) => t.name === "get_skill"
       );
-      const match = getSkillTool?.description?.match(
-        /Available skills: ([^\n]+)/
-      );
-      availableSkills = match ? match[1].split(", ").map((s) => s.trim()) : [];
+      availableSkills = extractAvailableSkills(getSkillTool?.description);
     });
 
     it("should include all expected sections in skill output", async () => {
