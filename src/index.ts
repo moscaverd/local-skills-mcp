@@ -234,6 +234,21 @@ export class LocalSkillsServer {
                 type: "number",
                 description: "Optional max optimization iterations",
               },
+              num_workers: {
+                type: "number",
+                description:
+                  "Optional evaluator parallel workers (defaults to 1 for stable trigger measurements)",
+              },
+              runs_per_query: {
+                type: "number",
+                description:
+                  "Optional repeats per query (defaults to 1; increase for variance analysis)",
+              },
+              timeout_seconds: {
+                type: "number",
+                description:
+                  "Optional timeout per query in seconds (defaults to 120)",
+              },
               model: {
                 type: "string",
                 description:
@@ -334,6 +349,12 @@ export class LocalSkillsServer {
         eval_set_path: args?.eval_set_path,
         // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
         max_iterations: args?.max_iterations,
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
+        num_workers: args?.num_workers,
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
+        runs_per_query: args?.runs_per_query,
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
+        timeout_seconds: args?.timeout_seconds,
         // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
         model: args?.model,
       },

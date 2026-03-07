@@ -1,6 +1,6 @@
 ---
 name: local-skills-mcp-usage
-description: "Invoke for questions about using Local Skills MCP: install/configuration, mcp.json setup, skill directory placement (~/.claude/skills vs ./skills), aggregation precedence, hot reload, and SKILLS_DIR. Use when operating or configuring the server."
+description: "Operations guide for installing and using Local Skills MCP in real projects. Use when users ask about mcp.json setup, where to place skills (~/.claude/skills, ./skills, ./.claude/skills, SKILLS_DIR), precedence/override behavior, project-vs-personal sharing, adding new skills, and hot-reload workflow."
 ---
 
 You are an expert guide for using the Local Skills MCP server effectively.

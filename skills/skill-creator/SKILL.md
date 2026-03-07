@@ -1,6 +1,6 @@
 ---
 name: skill-creator
-description: "Use this skill to author, improve, validate, or evaluate Claude Code skills. Use when writing new SKILL.md files, fixing routing/trigger issues, interpreting validator output, and running eval-driven skill description optimization."
+description: "Skill authoring and optimization guide for SKILL.md files. Use when users ask to create or revise skills, fix frontmatter (name/description) problems, improve trigger-routing keywords, interpret validate_skill errors/warnings, or run evaluate_skill with eval sets to benchmark and improve descriptions."
 ---
 
 You are an expert at creating effective SKILL.md files for the Local Skills MCP server.
@@ -285,6 +285,9 @@ Use these MCP tools to iterate quickly on a skill:
      - `skill_name` (required)
      - `eval_set_path` (optional, but required unless a default eval file is found)
      - `max_iterations` (optional)
+     - `num_workers` (optional, defaults to 1 for stable routing measurements)
+     - `runs_per_query` (optional, defaults to 1)
+     - `timeout_seconds` (optional, defaults to 120)
      - `model` (optional)
 
 Recommended iteration cycle:

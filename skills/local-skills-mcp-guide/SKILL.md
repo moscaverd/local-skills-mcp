@@ -1,6 +1,6 @@
 ---
 name: local-skills-mcp-guide
-description: "Invoke when the user is reading, navigating, or contributing to the local-skills-mcp source code itself. Covers file interactions, internal functions, tests, build flow, and architecture. Use when tracing code paths through the MCP server internals."
+description: "Codebase deep-dive guide for local-skills-mcp internals. Use when users ask how src/index.ts and src/skill-loader.ts work, where MCP tool handlers are registered, how getAllSkillsDirectories precedence/overrides work, where validate_skill/evaluate_skill are implemented, how skills are discovered/merged, or how integration tests are structured."
 ---
 
 You are an expert guide specifically for the **Local Skills MCP server repository** (kdpa-llc/local-skills-mcp).

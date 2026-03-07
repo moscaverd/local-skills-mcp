@@ -25,6 +25,9 @@ export interface EvaluateSkillInput {
   eval_set_path?: string;
   max_iterations?: number;
   model?: string;
+  num_workers?: number;
+  runs_per_query?: number;
+  timeout_seconds?: number;
 }
 
 export interface EvaluateSkillResult {
@@ -248,6 +251,19 @@ export async function evaluateSkill(
   const skillDir = resolveSkillPath(input, repoRoot);
   const evalSetPath = resolveEvalSetPath(input, repoRoot, skillDir);
   const model = input.model ?? process.env.EVALUATE_SKILL_MODEL ?? "sonnet";
+  const numWorkers =
+    input.num_workers ??
+    Number.parseInt(process.env.EVALUATE_SKILL_NUM_WORKERS ?? "1", 10);
+  const runsPerQuery =
+    input.runs_per_query ??
+    Number.parseInt(process.env.EVALUATE_SKILL_RUNS_PER_QUERY ?? "1", 10);
+  const timeoutCandidate =
+    input.timeout_seconds ??
+    Number.parseInt(process.env.EVALUATE_SKILL_TIMEOUT_SECONDS ?? "120", 10);
+  const timeoutSeconds =
+    Number.isFinite(timeoutCandidate) && timeoutCandidate > 0
+      ? Math.floor(timeoutCandidate)
+      : 120;
 
   let args: string[];
   if (prerequisites.runLoopInvocation === "module") {
@@ -262,6 +278,12 @@ export async function evaluateSkill(
       model,
       "--report",
       "none",
+      "--num-workers",
+      String(numWorkers),
+      "--runs-per-query",
+      String(runsPerQuery),
+      "--timeout",
+      String(timeoutSeconds),
     ];
 
     if (typeof input.max_iterations === "number") {
