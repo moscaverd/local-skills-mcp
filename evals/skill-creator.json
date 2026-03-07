@@ -1,0 +1,18 @@
+[
+  {
+    "query": "Help me create a new SKILL.md and write a strong description with clear 'Use when' triggers.",
+    "should_trigger": true
+  },
+  {
+    "query": "Review this skill frontmatter for name/description issues and improve routing keywords.",
+    "should_trigger": true
+  },
+  {
+    "query": "What will the weather be in New York this weekend?",
+    "should_trigger": false
+  },
+  {
+    "query": "Set up an nginx reverse proxy with TLS for my app.",
+    "should_trigger": false
+  }
+]

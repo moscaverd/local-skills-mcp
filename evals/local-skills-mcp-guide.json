@@ -1,0 +1,18 @@
+[
+  {
+    "query": "Walk me through the architecture of the Local Skills MCP repository, especially src/index.ts and skill loading.",
+    "should_trigger": true
+  },
+  {
+    "query": "In this local-skills-mcp codebase, how are duplicate skill names resolved across multiple directories?",
+    "should_trigger": true
+  },
+  {
+    "query": "Write a SQL query to find the top 10 customers by lifetime revenue.",
+    "should_trigger": false
+  },
+  {
+    "query": "Plan a 3-day Seattle itinerary with food and museums.",
+    "should_trigger": false
+  }
+]

@@ -1,0 +1,18 @@
+[
+  {
+    "query": "Where should I store a reusable personal skill versus a project-specific one when using Local Skills MCP?",
+    "should_trigger": true
+  },
+  {
+    "query": "Explain precedence between ~/.claude/skills, ./.claude/skills, ./skills, and SKILLS_DIR in Local Skills MCP.",
+    "should_trigger": true
+  },
+  {
+    "query": "Debug why this React component rerenders on every keystroke.",
+    "should_trigger": false
+  },
+  {
+    "query": "Generate a concise conventional commit message for my staged git changes.",
+    "should_trigger": false
+  }
+]

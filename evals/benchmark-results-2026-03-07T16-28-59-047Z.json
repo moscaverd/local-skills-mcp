@@ -1,0 +1,267 @@
+{
+  "startedAt": "2026-03-07T16:25:58.061Z",
+  "endedAt": "2026-03-07T16:28:59.047Z",
+  "results": [
+    {
+      "skill": "local-skills-mcp-guide",
+      "ok": true,
+      "duration_seconds": 60.31,
+      "result": {
+        "exit_reason": "max_iterations (1)",
+        "original_description": "Expert guide for understanding the Local Skills MCP server repository - its structure, architecture, and implementation. Use when exploring this MCP server's codebase, understanding how Local Skills MCP works internally, or contributing to the project.",
+        "best_description": "Expert guide for understanding the Local Skills MCP server repository - its structure, architecture, and implementation. Use when exploring this MCP server's codebase, understanding how Local Skills MCP works internally, or contributing to the project.",
+        "best_score": "1/2",
+        "best_train_score": "1/2",
+        "best_test_score": "1/2",
+        "final_description": "Expert guide for understanding the Local Skills MCP server repository - its structure, architecture, and implementation. Use when exploring this MCP server's codebase, understanding how Local Skills MCP works internally, or contributing to the project.",
+        "iterations_run": 1,
+        "holdout": 0.4,
+        "train_size": 2,
+        "test_size": 2,
+        "history": [
+          {
+            "iteration": 1,
+            "description": "Expert guide for understanding the Local Skills MCP server repository - its structure, architecture, and implementation. Use when exploring this MCP server's codebase, understanding how Local Skills MCP works internally, or contributing to the project.",
+            "train_passed": 1,
+            "train_failed": 1,
+            "train_total": 2,
+            "train_results": [
+              {
+                "query": "Write a SQL query to find the top 10 customers by lifetime revenue.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              },
+              {
+                "query": "Walk me through the architecture of the Local Skills MCP repository, especially src/index.ts and skill loading.",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              }
+            ],
+            "test_passed": 1,
+            "test_failed": 1,
+            "test_total": 2,
+            "test_results": [
+              {
+                "query": "In this local-skills-mcp codebase, how are duplicate skill names resolved across multiple directories?",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "Plan a 3-day Seattle itinerary with food and museums.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              }
+            ],
+            "passed": 1,
+            "failed": 1,
+            "total": 2,
+            "results": [
+              {
+                "query": "Write a SQL query to find the top 10 customers by lifetime revenue.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              },
+              {
+                "query": "Walk me through the architecture of the Local Skills MCP repository, especially src/index.ts and skill loading.",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "skill": "local-skills-mcp-usage",
+      "ok": true,
+      "duration_seconds": 60.32,
+      "result": {
+        "exit_reason": "max_iterations (1)",
+        "original_description": "Comprehensive guide for using Local Skills MCP - creating skills in the right locations, understanding skill directories, setup, and configuration. Use when creating new skills, deciding where to save skills, setting up the MCP server, or understanding how skill aggregation works.",
+        "best_description": "Comprehensive guide for using Local Skills MCP - creating skills in the right locations, understanding skill directories, setup, and configuration. Use when creating new skills, deciding where to save skills, setting up the MCP server, or understanding how skill aggregation works.",
+        "best_score": "1/2",
+        "best_train_score": "1/2",
+        "best_test_score": "1/2",
+        "final_description": "Comprehensive guide for using Local Skills MCP - creating skills in the right locations, understanding skill directories, setup, and configuration. Use when creating new skills, deciding where to save skills, setting up the MCP server, or understanding how skill aggregation works.",
+        "iterations_run": 1,
+        "holdout": 0.4,
+        "train_size": 2,
+        "test_size": 2,
+        "history": [
+          {
+            "iteration": 1,
+            "description": "Comprehensive guide for using Local Skills MCP - creating skills in the right locations, understanding skill directories, setup, and configuration. Use when creating new skills, deciding where to save skills, setting up the MCP server, or understanding how skill aggregation works.",
+            "train_passed": 1,
+            "train_failed": 1,
+            "train_total": 2,
+            "train_results": [
+              {
+                "query": "Debug why this React component rerenders on every keystroke.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              },
+              {
+                "query": "Where should I store a reusable personal skill versus a project-specific one when using Local Skills MCP?",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              }
+            ],
+            "test_passed": 1,
+            "test_failed": 1,
+            "test_total": 2,
+            "test_results": [
+              {
+                "query": "Explain precedence between ~/.claude/skills, ./.claude/skills, ./skills, and SKILLS_DIR in Local Skills MCP.",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "Generate a concise conventional commit message for my staged git changes.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              }
+            ],
+            "passed": 1,
+            "failed": 1,
+            "total": 2,
+            "results": [
+              {
+                "query": "Debug why this React component rerenders on every keystroke.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              },
+              {
+                "query": "Where should I store a reusable personal skill versus a project-specific one when using Local Skills MCP?",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "skill": "skill-creator",
+      "ok": true,
+      "duration_seconds": 60.35,
+      "result": {
+        "exit_reason": "max_iterations (1)",
+        "original_description": "Creates effective SKILL.md files with proper YAML frontmatter, trigger keywords, and best practices. Use when creating skills, writing skill descriptions, authoring SKILL.md files, or learning skill format.",
+        "best_description": "Creates effective SKILL.md files with proper YAML frontmatter, trigger keywords, and best practices. Use when creating skills, writing skill descriptions, authoring SKILL.md files, or learning skill format.",
+        "best_score": "1/2",
+        "best_train_score": "1/2",
+        "best_test_score": "1/2",
+        "final_description": "Creates effective SKILL.md files with proper YAML frontmatter, trigger keywords, and best practices. Use when creating skills, writing skill descriptions, authoring SKILL.md files, or learning skill format.",
+        "iterations_run": 1,
+        "holdout": 0.4,
+        "train_size": 2,
+        "test_size": 2,
+        "history": [
+          {
+            "iteration": 1,
+            "description": "Creates effective SKILL.md files with proper YAML frontmatter, trigger keywords, and best practices. Use when creating skills, writing skill descriptions, authoring SKILL.md files, or learning skill format.",
+            "train_passed": 1,
+            "train_failed": 1,
+            "train_total": 2,
+            "train_results": [
+              {
+                "query": "Help me create a new SKILL.md and write a strong description with clear 'Use when' triggers.",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "What will the weather be in New York this weekend?",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              }
+            ],
+            "test_passed": 1,
+            "test_failed": 1,
+            "test_total": 2,
+            "test_results": [
+              {
+                "query": "Review this skill frontmatter for name/description issues and improve routing keywords.",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "Set up an nginx reverse proxy with TLS for my app.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              }
+            ],
+            "passed": 1,
+            "failed": 1,
+            "total": 2,
+            "results": [
+              {
+                "query": "Help me create a new SKILL.md and write a strong description with clear 'Use when' triggers.",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "What will the weather be in New York this weekend?",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}
