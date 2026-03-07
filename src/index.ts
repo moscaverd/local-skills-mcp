@@ -217,7 +217,7 @@ export class LocalSkillsServer {
         {
           name: "evaluate_skill",
           description:
-            "Runs Anthropic skill-creator eval loop for a skill (requires python, claude CLI, anthropic package, ANTHROPIC_API_KEY, and an eval set JSON).",
+            "Runs Anthropic skill-creator eval loop for a skill (requires Python, Claude CLI auth, and an eval set JSON; legacy layouts may also require ANTHROPIC_API_KEY + anthropic package).",
           inputSchema: {
             type: "object",
             properties: {

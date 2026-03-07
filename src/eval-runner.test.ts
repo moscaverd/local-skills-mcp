@@ -31,11 +31,12 @@ describe("eval-runner", () => {
     expect(result.ok).toBe(false);
     expect(result.missing).toContain("Python (python3 or python)");
     expect(result.missing).toContain("Claude CLI (claude)");
-    expect(result.missing.join(" ")).toContain("ANTHROPIC_API_KEY");
     expect(result.missing.join(" ")).toContain("run_loop.py");
   });
 
   it("detects the current Anthropic skill-creator run_loop layout", () => {
+    delete process.env.ANTHROPIC_API_KEY;
+
     vi.mocked(spawnSync)
       .mockReturnValueOnce({ status: 0 } as any)
       .mockReturnValueOnce({ status: 0 } as any)
@@ -57,6 +58,23 @@ describe("eval-runner", () => {
     expect(result.runLoopCwd).toBe(
       "/repo/vendor/anthropic-skills/skills/skill-creator"
     );
+  });
+
+  it("requires API-key style auth in legacy run_loop layout", () => {
+    delete process.env.ANTHROPIC_API_KEY;
+
+    vi.mocked(spawnSync)
+      .mockReturnValueOnce({ status: 0 } as any)
+      .mockReturnValueOnce({ status: 0 } as any)
+      .mockReturnValueOnce({ status: 0 } as any);
+
+    vi.mocked(fs.existsSync).mockImplementation((target: any) =>
+      String(target).endsWith("vendor/anthropic-skills/run_loop.py")
+    );
+
+    const result = checkEvaluatePrerequisites("/repo");
+    expect(result.ok).toBe(false);
+    expect(result.missing).toContain("ANTHROPIC_API_KEY environment variable");
   });
 
   it("runs scripts.run_loop and parses multiline JSON output", async () => {

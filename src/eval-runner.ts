@@ -75,6 +75,7 @@ export function checkEvaluatePrerequisites(
   repoRoot: string
 ): PrerequisiteCheck {
   const missing: string[] = [];
+  const runLoop = findRunLoop(repoRoot);
 
   const pythonCommand = ["python3", "python"].find((cmd) => {
     const result = spawnSync(cmd, ["--version"], { stdio: "ignore" });
@@ -92,18 +93,21 @@ export function checkEvaluatePrerequisites(
     missing.push("Claude CLI (claude)");
   }
 
-  if (!process.env.ANTHROPIC_API_KEY) {
-    missing.push("ANTHROPIC_API_KEY environment variable");
-  }
-
-  const runLoop = findRunLoop(repoRoot);
   if (!runLoop) {
     missing.push(
       `Anthropic run_loop.py script at ${path.join(repoRoot, NEW_RUN_LOOP_PATH)} or ${path.join(repoRoot, LEGACY_RUN_LOOP_PATH)}`
     );
   }
 
-  if (pythonCommand) {
+  // Legacy layout used Python SDK/API-key auth.
+  if (
+    runLoop?.runLoopInvocation === "script" &&
+    !process.env.ANTHROPIC_API_KEY
+  ) {
+    missing.push("ANTHROPIC_API_KEY environment variable");
+  }
+
+  if (pythonCommand && runLoop?.runLoopInvocation === "script") {
     const anthropicCheck = spawnSync(
       pythonCommand,
       ["-c", "import anthropic"],

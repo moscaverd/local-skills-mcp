@@ -276,10 +276,11 @@ Use these MCP tools to iterate quickly on a skill:
    - Runs Anthropic's Python eval loop (`run_loop.py`) to optimize descriptions using eval data.
    - Requirements:
      - Python (`python3` or `python`)
-     - Claude CLI (`claude`)
-     - `anthropic` package installed in Python environment
-     - `ANTHROPIC_API_KEY` environment variable
+     - Claude CLI (`claude`) with an authenticated session (OAuth)
      - Eval set JSON file (pass `eval_set_path` or place it in a default location)
+     - Legacy run-loop layouts may additionally require:
+       - `anthropic` package installed in Python environment
+       - `ANTHROPIC_API_KEY` environment variable
    - Typical inputs:
      - `skill_name` (required)
      - `eval_set_path` (optional, but required unless a default eval file is found)
