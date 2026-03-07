@@ -260,8 +260,6 @@ Poor:
 updated files
 ```
 
-```
-
 When helping users create skills, guide them through the format, ask clarifying questions about their needs, and help them write effective descriptions with proper trigger keywords.
 
 ## Validation and Evaluation Workflow
@@ -278,17 +276,19 @@ Use these MCP tools to iterate quickly on a skill:
    - Runs Anthropic's Python eval loop (`run_loop.py`) to optimize descriptions using eval data.
    - Requirements:
      - Python (`python3` or `python`)
+     - Claude CLI (`claude`)
      - `anthropic` package installed in Python environment
      - `ANTHROPIC_API_KEY` environment variable
+     - Eval set JSON file (pass `eval_set_path` or place it in a default location)
    - Typical inputs:
      - `skill_name` (required)
-     - `eval_set_path` (optional)
+     - `eval_set_path` (optional, but required unless a default eval file is found)
      - `max_iterations` (optional)
      - `model` (optional)
 
 Recommended iteration cycle:
+
 - Draft SKILL.md
 - Run `validate_skill` until there are no errors
 - Improve warnings if possible
 - Optionally run `evaluate_skill` to compare/refine description quality
-```

@@ -52,6 +52,7 @@ export default tseslint.config(
       "coverage",
       ".tmp",
       "scripts/**",
+      "vendor/**",
     ],
   }
 );

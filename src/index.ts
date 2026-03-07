@@ -217,14 +217,28 @@ export class LocalSkillsServer {
         {
           name: "evaluate_skill",
           description:
-            "Runs Anthropic eval loop for a skill via Python run_loop.py (requires python, anthropic package, and ANTHROPIC_API_KEY).",
+            "Runs Anthropic skill-creator eval loop for a skill (requires python, claude CLI, anthropic package, ANTHROPIC_API_KEY, and an eval set JSON).",
           inputSchema: {
             type: "object",
             properties: {
-              skill_name: { type: "string" },
-              eval_set_path: { type: "string" },
-              max_iterations: { type: "number" },
-              model: { type: "string" },
+              skill_name: {
+                type: "string",
+                description: "The skill directory name to evaluate",
+              },
+              eval_set_path: {
+                type: "string",
+                description:
+                  "Optional path to eval set JSON. If omitted, common default locations are checked.",
+              },
+              max_iterations: {
+                type: "number",
+                description: "Optional max optimization iterations",
+              },
+              model: {
+                type: "string",
+                description:
+                  'Optional model passed to Claude CLI (defaults to "sonnet")',
+              },
             },
             required: ["skill_name"],
           },
@@ -306,10 +320,16 @@ export class LocalSkillsServer {
       throw new Error("skill_name is required");
     }
 
+    const skillFilePath = this.resolveSkillFilePath(skillName as string);
+    if (!skillFilePath) {
+      throw new Error(`Skill "${skillName}" not found.`);
+    }
+
     const result = await evaluateSkill(
       {
         // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         skill_name: skillName,
+        skill_path: path.dirname(skillFilePath),
         // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
         eval_set_path: args?.eval_set_path,
         // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
