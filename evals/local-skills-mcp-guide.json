@@ -1,18 +1,50 @@
 [
   {
-    "query": "Walk me through the architecture of the Local Skills MCP repository, especially src/index.ts and skill loading.",
+    "query": "Explain how src/index.ts and src/skill-loader.ts work together in local-skills-mcp.",
     "should_trigger": true
   },
   {
-    "query": "In this local-skills-mcp codebase, how are duplicate skill names resolved across multiple directories?",
+    "query": "In this local-skills-mcp repo, where are the MCP tool handlers defined and how are they registered?",
     "should_trigger": true
   },
   {
-    "query": "Write a SQL query to find the top 10 customers by lifetime revenue.",
+    "query": "Walk me through getAllSkillsDirectories priority and override behavior in this codebase.",
+    "should_trigger": true
+  },
+  {
+    "query": "How does local-skills-mcp discover skills and merge metadata across directories?",
+    "should_trigger": true
+  },
+  {
+    "query": "Point me to where validate_skill and evaluate_skill are implemented in this repository.",
+    "should_trigger": true
+  },
+  {
+    "query": "How are integration tests structured in this local-skills-mcp project?",
+    "should_trigger": true
+  },
+  {
+    "query": "Where should I store a personal reusable skill: ~/.claude/skills or ./skills?",
     "should_trigger": false
   },
   {
-    "query": "Plan a 3-day Seattle itinerary with food and museums.",
+    "query": "Generate a conventional commit message for these staged files.",
+    "should_trigger": false
+  },
+  {
+    "query": "Write a SQL query for monthly active users grouped by country.",
+    "should_trigger": false
+  },
+  {
+    "query": "Help me debug a React input lag issue in a controlled component.",
+    "should_trigger": false
+  },
+  {
+    "query": "Plan a 3-day Seattle trip with coffee shops and museums.",
+    "should_trigger": false
+  },
+  {
+    "query": "Set up an nginx reverse proxy with TLS on Ubuntu.",
     "should_trigger": false
   }
 ]

@@ -1,6 +1,6 @@
 ---
 name: local-skills-mcp-guide
-description: Expert guide for understanding the Local Skills MCP server repository - its structure, architecture, and implementation. Use when exploring this MCP server's codebase, understanding how Local Skills MCP works internally, or contributing to the project.
+description: "Invoke when the user is reading, navigating, or contributing to the local-skills-mcp source code itself. Covers file interactions, internal functions, tests, build flow, and architecture. Use when tracing code paths through the MCP server internals."
 ---
 
 You are an expert guide specifically for the **Local Skills MCP server repository** (kdpa-llc/local-skills-mcp).
@@ -39,25 +39,30 @@ local-skills-mcp/
 ## Key Components of Local Skills MCP
 
 ### 1. MCP Server Implementation (src/index.ts)
+
 **What it does**: Core MCP server that implements the Model Context Protocol
 
 **Key responsibilities**:
+
 - Initializes the MCP server using the `@modelcontextprotocol/sdk`
-- Exposes the single `get_skill` tool to MCP clients
+- Exposes `get_skill`, `validate_skill`, and `evaluate_skill` tools to MCP clients
 - Handles skill discovery by aggregating skill metadata
 - Dynamically updates tool descriptions with current available skills
 - Implements request handlers for tool invocation
 - Manages server lifecycle and stdio transport
 
 **Important functions**:
+
 - Server initialization and tool registration
 - Dynamic tool description generation (includes skill list)
 - Skill invocation handler
 
 ### 2. Skill Loading System (src/skill-loader.ts)
+
 **What it does**: Multi-directory skill aggregation engine
 
 **Key responsibilities**:
+
 - Discovers skills from multiple configured directories:
   - `~/.claude/skills/` (personal/Claude-compatible skills)
   - `./.claude/skills/` (project-local skills)
@@ -69,14 +74,17 @@ local-skills-mcp/
 - Resolves skill name conflicts (later directories override earlier)
 
 **Important functions**:
+
 - `loadSkills()` - Main aggregation function
 - YAML frontmatter parsing
 - Skill validation logic
 
 ### 3. Type Definitions (src/types.ts)
+
 **What it does**: TypeScript type system for Local Skills MCP
 
 **Defines**:
+
 - `Skill` interface (metadata and content)
 - MCP tool definitions
 - Configuration types
@@ -84,19 +92,22 @@ local-skills-mcp/
 ## How Local Skills MCP Works
 
 ### Startup Sequence
+
 1. Server starts via stdio transport
 2. Skill loader aggregates skills from all configured directories
 3. Skills are validated and cached in memory
-4. MCP server initializes and registers the `get_skill` tool
-5. Tool description is generated with current skill list
+4. MCP server initializes and registers the skill tools
+5. `get_skill` description is generated with current skill list and metadata
 
 ### Skill Discovery (Lazy Loading)
+
 1. MCP client queries available tools
-2. Local Skills MCP returns `get_skill` tool description
-3. Description includes names and brief descriptions of all available skills
+2. Local Skills MCP returns a tool list (including `get_skill`)
+3. `get_skill` description includes names and brief descriptions of all available skills
 4. **Context efficiency**: Only ~50 tokens per skill at this stage
 
 ### Skill Invocation
+
 1. User requests a skill (e.g., "use the skill-creator skill")
 2. AI invokes `get_skill` tool with skill name parameter
 3. Local Skills MCP loads full skill content from cache
@@ -104,7 +115,9 @@ local-skills-mcp/
 5. AI applies the expert instructions
 
 ### Skill Aggregation Priority
+
 Skills are loaded in this order (later overrides earlier):
+
 1. `~/.claude/skills/`
 2. `./.claude/skills/`
 3. `./skills`
@@ -116,18 +129,19 @@ Each skill must be named `SKILL.md` with YAML frontmatter:
 
 ```markdown
 ---
-name: skill-name           # Required: lowercase, hyphens, max 64 chars
-description: Brief desc... # Required: max 200 chars, include trigger keywords
+name: skill-name # Required: lowercase, hyphens, max 64 chars
+description: Brief desc... # Required: max 1024 chars, include trigger keywords
 ---
 
 Skill instructions in Markdown format...
 ```
 
 **Validation rules** (enforced by skill-loader.ts):
+
 - File must be named exactly `SKILL.md`
 - Must have `---` delimited YAML frontmatter
 - `name` field is required and must be valid
-- `description` field is required (max 200 chars)
+- `description` field is required (max 1024 chars)
 
 ## Design Principles of Local Skills MCP
 
@@ -136,7 +150,7 @@ Skill instructions in Markdown format...
 3. **Multi-Source Aggregation**: Combine skills from personal, project, and custom directories
 4. **Zero Configuration**: Works immediately with standard skill directories
 5. **Progressive Disclosure**: Show minimal info upfront, load details on-demand
-6. **Single Tool Design**: One simple tool (`get_skill`) with dynamic skill discovery
+6. **Focused Tool Surface**: `get_skill` for loading, plus validation/evaluation helper tools
 
 ## Common Questions About Local Skills MCP
 
@@ -156,7 +170,7 @@ A: Edit the `loadSkills()` function in `src/skill-loader.ts` to add new director
 A: TypeScript source in `src/` compiles to JavaScript in `dist/` using `npm run build`. The `prepare` script runs automatically on install.
 
 **Q: How does Local Skills MCP achieve context efficiency?**
-A: Through lazy loading - only skill names and descriptions appear in the `get_skill` tool description. Full content loads only when a skill is invoked.
+A: Through lazy loading - list metadata stays lightweight, and full skill content loads only when `get_skill` is invoked.
 
 **Q: What MCP SDK does this use?**
 A: `@modelcontextprotocol/sdk` - The official Model Context Protocol SDK from Anthropic.
@@ -164,18 +178,21 @@ A: `@modelcontextprotocol/sdk` - The official Model Context Protocol SDK from An
 ## Development Workflow for Local Skills MCP
 
 ### Building the Project
+
 ```bash
 npm run build        # Compile TypeScript to JavaScript
 npm run watch        # Watch mode for development
 ```
 
 ### Testing Local Changes
+
 1. Make changes to `src/` files
 2. Run `npm run build`
 3. Restart your MCP client
 4. Test the modified server
 
 ### Adding New Features
+
 1. Modify TypeScript source files in `src/`
 2. Update types in `src/types.ts` if needed
 3. Add tests (if implementing)
@@ -197,7 +214,8 @@ npm run watch        # Watch mode for development
 ## Key Differences from Other MCP Servers
 
 Local Skills MCP is unique because:
-- **Single-tool design**: Just `get_skill` with dynamic descriptions
+
+- **Focused tool surface**: `get_skill` with optional validation/evaluation helpers
 - **Multi-directory aggregation**: Combines skills from multiple sources
 - **Context-efficient**: Lazy loading preserves context window
 - **Universal skills**: Works across any MCP client, not just one
@@ -206,6 +224,7 @@ Local Skills MCP is unique because:
 ## Contributing to Local Skills MCP
 
 When helping users contribute:
+
 1. Point them to `CONTRIBUTING.md` for guidelines
 2. Explain the TypeScript codebase structure
 3. Guide them through the build process
@@ -213,6 +232,7 @@ When helping users contribute:
 5. Assist with testing their changes locally
 
 When helping users navigate the Local Skills MCP codebase, always:
+
 - Provide specific file paths (e.g., `src/index.ts:42`)
 - Explain how components interact
 - Reference the official documentation

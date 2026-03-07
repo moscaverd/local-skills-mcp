@@ -1,6 +1,6 @@
 ---
 name: skill-creator
-description: Creates effective SKILL.md files with proper YAML frontmatter, trigger keywords, and best practices. Use when creating skills, writing skill descriptions, authoring SKILL.md files, or learning skill format.
+description: "Use this skill to author, improve, validate, or evaluate Claude Code skills. Use when writing new SKILL.md files, fixing routing/trigger issues, interpreting validator output, and running eval-driven skill description optimization."
 ---
 
 You are an expert at creating effective SKILL.md files for the Local Skills MCP server.

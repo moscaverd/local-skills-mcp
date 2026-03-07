@@ -1,18 +1,50 @@
 [
   {
-    "query": "Help me create a new SKILL.md and write a strong description with clear 'Use when' triggers.",
+    "query": "Create a new SKILL.md for a code-review assistant and write a good description with clear Use when triggers.",
     "should_trigger": true
   },
   {
-    "query": "Review this skill frontmatter for name/description issues and improve routing keywords.",
+    "query": "Can you review my skill frontmatter and fix name/description issues?",
     "should_trigger": true
   },
   {
-    "query": "What will the weather be in New York this weekend?",
+    "query": "I want to improve an existing skill's routing quality. Suggest better trigger keywords.",
+    "should_trigger": true
+  },
+  {
+    "query": "Help me author a complete SKILL.md template with role, task, constraints, and output format.",
+    "should_trigger": true
+  },
+  {
+    "query": "How do I validate a skill and interpret errors vs warnings?",
+    "should_trigger": true
+  },
+  {
+    "query": "Guide me through evaluating a skill description against an eval set.",
+    "should_trigger": true
+  },
+  {
+    "query": "Set up nginx with Let's Encrypt for my VPS.",
     "should_trigger": false
   },
   {
-    "query": "Set up an nginx reverse proxy with TLS for my app.",
+    "query": "Debug this React useEffect dependency loop.",
+    "should_trigger": false
+  },
+  {
+    "query": "Write a SQL query to find duplicate rows in orders.",
+    "should_trigger": false
+  },
+  {
+    "query": "Plan a 5-day Tokyo itinerary with ramen spots.",
+    "should_trigger": false
+  },
+  {
+    "query": "Generate an incident response checklist for on-call rotation.",
+    "should_trigger": false
+  },
+  {
+    "query": "Explain Kubernetes HPA tuning strategies for CPU spikes.",
     "should_trigger": false
   }
 ]

@@ -1,0 +1,56 @@
+{
+  "timestamp": "2026-03-07T17:21:47.440Z",
+  "validation": [
+    {
+      "skill": "local-skills-mcp-guide",
+      "valid": true,
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "skill": "local-skills-mcp-usage",
+      "valid": false,
+      "errors": [
+        "Nested mappings are not allowed in compact mappings at line 2, column 14:\n\ndescription: Invoke for questions about using Local Skills MCP: install/configu…\n             ^\n"
+      ],
+      "warnings": []
+    },
+    {
+      "skill": "skill-creator",
+      "valid": true,
+      "errors": [],
+      "warnings": [
+        "Description should include a \"Use when ...\" trigger phrase."
+      ]
+    }
+  ],
+  "benchmarks": [
+    {
+      "skill": "local-skills-mcp-guide",
+      "ok": true,
+      "duration_seconds": 120.61,
+      "best_score": "2/4",
+      "best_train_score": "4/8",
+      "best_test_score": "2/4",
+      "best_description": "Invoke when the user is reading, navigating, or contributing to the local-skills-mcp source code itself. Covers file interactions, internal functions, tests, build flow, and architecture. Use when tracing code paths through the MCP server internals."
+    },
+    {
+      "skill": "local-skills-mcp-usage",
+      "ok": true,
+      "duration_seconds": 120.67,
+      "best_score": "2/4",
+      "best_train_score": "4/8",
+      "best_test_score": "2/4",
+      "best_description": "Invoke for questions about using Local Skills MCP: install/configuration, mcp.json setup, skill directory placement (~/.claude/skills vs ./skills), aggregation precedence, hot reload, and SKILLS_DIR. Use when operating or configuring the server."
+    },
+    {
+      "skill": "skill-creator",
+      "ok": true,
+      "duration_seconds": 120.52,
+      "best_score": "2/4",
+      "best_train_score": "4/8",
+      "best_test_score": "2/4",
+      "best_description": "Use this skill to author, improve, validate, or evaluate Claude Code skills. Invoke it for writing new SKILL.md files, fixing routing/trigger issues, interpreting validator output, and running eval-driven skill description optimization."
+    }
+  ]
+}

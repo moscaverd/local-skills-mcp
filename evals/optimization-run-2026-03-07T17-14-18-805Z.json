@@ -1,0 +1,2280 @@
+{
+  "startedAt": "2026-03-07T16:49:32.938Z",
+  "endedAt": "2026-03-07T17:14:18.805Z",
+  "runs": [
+    {
+      "phase": "baseline",
+      "skill": "local-skills-mcp-guide",
+      "ok": true,
+      "duration_seconds": 120.65,
+      "result": {
+        "exit_reason": "max_iterations (1)",
+        "original_description": "Expert guide for understanding the Local Skills MCP server repository - its structure, architecture, and implementation. Use when exploring this MCP server's codebase, understanding how Local Skills MCP works internally, or contributing to the project.",
+        "best_description": "Expert guide for understanding the Local Skills MCP server repository - its structure, architecture, and implementation. Use when exploring this MCP server's codebase, understanding how Local Skills MCP works internally, or contributing to the project.",
+        "best_score": "2/4",
+        "best_train_score": "4/8",
+        "best_test_score": "2/4",
+        "final_description": "Expert guide for understanding the Local Skills MCP server repository - its structure, architecture, and implementation. Use when exploring this MCP server's codebase, understanding how Local Skills MCP works internally, or contributing to the project.",
+        "iterations_run": 1,
+        "holdout": 0.4,
+        "train_size": 8,
+        "test_size": 4,
+        "history": [
+          {
+            "iteration": 1,
+            "description": "Expert guide for understanding the Local Skills MCP server repository - its structure, architecture, and implementation. Use when exploring this MCP server's codebase, understanding how Local Skills MCP works internally, or contributing to the project.",
+            "train_passed": 4,
+            "train_failed": 4,
+            "train_total": 8,
+            "train_results": [
+              {
+                "query": "Walk me through getAllSkillsDirectories priority and override behavior in this codebase.",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "Point me to where validate_skill and evaluate_skill are implemented in this repository.",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "Explain how src/index.ts and src/skill-loader.ts work together in local-skills-mcp.",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "How are integration tests structured in this local-skills-mcp project?",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "Write a SQL query for monthly active users grouped by country.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              },
+              {
+                "query": "Plan a 3-day Seattle trip with coffee shops and museums.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              },
+              {
+                "query": "Set up an nginx reverse proxy with TLS on Ubuntu.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              },
+              {
+                "query": "Generate a conventional commit message for these staged files.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              }
+            ],
+            "test_passed": 2,
+            "test_failed": 2,
+            "test_total": 4,
+            "test_results": [
+              {
+                "query": "How does local-skills-mcp discover skills and merge metadata across directories?",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "In this local-skills-mcp repo, where are the MCP tool handlers defined and how are they registered?",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "Help me debug a React input lag issue in a controlled component.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              },
+              {
+                "query": "Where should I store a personal reusable skill: ~/.claude/skills or ./skills?",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              }
+            ],
+            "passed": 4,
+            "failed": 4,
+            "total": 8,
+            "results": [
+              {
+                "query": "Walk me through getAllSkillsDirectories priority and override behavior in this codebase.",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "Point me to where validate_skill and evaluate_skill are implemented in this repository.",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "Explain how src/index.ts and src/skill-loader.ts work together in local-skills-mcp.",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "How are integration tests structured in this local-skills-mcp project?",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "Write a SQL query for monthly active users grouped by country.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              },
+              {
+                "query": "Plan a 3-day Seattle trip with coffee shops and museums.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              },
+              {
+                "query": "Set up an nginx reverse proxy with TLS on Ubuntu.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              },
+              {
+                "query": "Generate a conventional commit message for these staged files.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "phase": "baseline",
+      "skill": "local-skills-mcp-usage",
+      "ok": true,
+      "duration_seconds": 120.72,
+      "result": {
+        "exit_reason": "max_iterations (1)",
+        "original_description": "Comprehensive guide for using Local Skills MCP - creating skills in the right locations, understanding skill directories, setup, and configuration. Use when creating new skills, deciding where to save skills, setting up the MCP server, or understanding how skill aggregation works.",
+        "best_description": "Comprehensive guide for using Local Skills MCP - creating skills in the right locations, understanding skill directories, setup, and configuration. Use when creating new skills, deciding where to save skills, setting up the MCP server, or understanding how skill aggregation works.",
+        "best_score": "2/4",
+        "best_train_score": "4/8",
+        "best_test_score": "2/4",
+        "final_description": "Comprehensive guide for using Local Skills MCP - creating skills in the right locations, understanding skill directories, setup, and configuration. Use when creating new skills, deciding where to save skills, setting up the MCP server, or understanding how skill aggregation works.",
+        "iterations_run": 1,
+        "holdout": 0.4,
+        "train_size": 8,
+        "test_size": 4,
+        "history": [
+          {
+            "iteration": 1,
+            "description": "Comprehensive guide for using Local Skills MCP - creating skills in the right locations, understanding skill directories, setup, and configuration. Use when creating new skills, deciding where to save skills, setting up the MCP server, or understanding how skill aggregation works.",
+            "train_passed": 4,
+            "train_failed": 4,
+            "train_total": 8,
+            "train_results": [
+              {
+                "query": "Show me how to configure local-skills-mcp in Claude Code mcp.json.",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "What is the fastest way to create a new skill folder and make it discoverable by Local Skills MCP?",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "How does Local Skills MCP hot-reload skill edits without restarting?",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "For Local Skills MCP, when should I put a skill in ~/.claude/skills versus ./skills?",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "Generate a docker-compose.yml for postgres + redis + api service.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              },
+              {
+                "query": "Write a SQL migration that adds an index to users(email).",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              },
+              {
+                "query": "Help me choose between an M3 MacBook Air and Pro.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              },
+              {
+                "query": "Review this Python function for performance issues and suggest optimizations.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              }
+            ],
+            "test_passed": 2,
+            "test_failed": 2,
+            "test_total": 4,
+            "test_results": [
+              {
+                "query": "How do I add a project-specific skill so my team gets it from git?",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "Explain the directory precedence between ~/.claude/skills, ./.claude/skills, ./skills, and SKILLS_DIR.",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "What will the weather be in New York this weekend?",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              },
+              {
+                "query": "Explain the implementation details of skill metadata truncation in src/index.ts.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              }
+            ],
+            "passed": 4,
+            "failed": 4,
+            "total": 8,
+            "results": [
+              {
+                "query": "Show me how to configure local-skills-mcp in Claude Code mcp.json.",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "What is the fastest way to create a new skill folder and make it discoverable by Local Skills MCP?",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "How does Local Skills MCP hot-reload skill edits without restarting?",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "For Local Skills MCP, when should I put a skill in ~/.claude/skills versus ./skills?",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "Generate a docker-compose.yml for postgres + redis + api service.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              },
+              {
+                "query": "Write a SQL migration that adds an index to users(email).",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              },
+              {
+                "query": "Help me choose between an M3 MacBook Air and Pro.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              },
+              {
+                "query": "Review this Python function for performance issues and suggest optimizations.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "phase": "baseline",
+      "skill": "skill-creator",
+      "ok": true,
+      "duration_seconds": 120.68,
+      "result": {
+        "exit_reason": "max_iterations (1)",
+        "original_description": "Creates effective SKILL.md files with proper YAML frontmatter, trigger keywords, and best practices. Use when creating skills, writing skill descriptions, authoring SKILL.md files, or learning skill format.",
+        "best_description": "Creates effective SKILL.md files with proper YAML frontmatter, trigger keywords, and best practices. Use when creating skills, writing skill descriptions, authoring SKILL.md files, or learning skill format.",
+        "best_score": "2/4",
+        "best_train_score": "4/8",
+        "best_test_score": "2/4",
+        "final_description": "Creates effective SKILL.md files with proper YAML frontmatter, trigger keywords, and best practices. Use when creating skills, writing skill descriptions, authoring SKILL.md files, or learning skill format.",
+        "iterations_run": 1,
+        "holdout": 0.4,
+        "train_size": 8,
+        "test_size": 4,
+        "history": [
+          {
+            "iteration": 1,
+            "description": "Creates effective SKILL.md files with proper YAML frontmatter, trigger keywords, and best practices. Use when creating skills, writing skill descriptions, authoring SKILL.md files, or learning skill format.",
+            "train_passed": 4,
+            "train_failed": 4,
+            "train_total": 8,
+            "train_results": [
+              {
+                "query": "I want to improve an existing skill's routing quality. Suggest better trigger keywords.",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "How do I validate a skill and interpret errors vs warnings?",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "Create a new SKILL.md for a code-review assistant and write a good description with clear Use when triggers.",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "Guide me through evaluating a skill description against an eval set.",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "Write a SQL query to find duplicate rows in orders.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              },
+              {
+                "query": "Explain Kubernetes HPA tuning strategies for CPU spikes.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              },
+              {
+                "query": "Generate an incident response checklist for on-call rotation.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              },
+              {
+                "query": "Debug this React useEffect dependency loop.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              }
+            ],
+            "test_passed": 2,
+            "test_failed": 2,
+            "test_total": 4,
+            "test_results": [
+              {
+                "query": "Help me author a complete SKILL.md template with role, task, constraints, and output format.",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "Can you review my skill frontmatter and fix name/description issues?",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "Plan a 5-day Tokyo itinerary with ramen spots.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              },
+              {
+                "query": "Set up nginx with Let's Encrypt for my VPS.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              }
+            ],
+            "passed": 4,
+            "failed": 4,
+            "total": 8,
+            "results": [
+              {
+                "query": "I want to improve an existing skill's routing quality. Suggest better trigger keywords.",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "How do I validate a skill and interpret errors vs warnings?",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "Create a new SKILL.md for a code-review assistant and write a good description with clear Use when triggers.",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "Guide me through evaluating a skill description against an eval set.",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "Write a SQL query to find duplicate rows in orders.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              },
+              {
+                "query": "Explain Kubernetes HPA tuning strategies for CPU spikes.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              },
+              {
+                "query": "Generate an incident response checklist for on-call rotation.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              },
+              {
+                "query": "Debug this React useEffect dependency loop.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "phase": "optimized",
+      "skill": "local-skills-mcp-guide",
+      "ok": true,
+      "duration_seconds": 373.82,
+      "result": {
+        "exit_reason": "max_iterations (3)",
+        "original_description": "Expert guide for understanding the Local Skills MCP server repository - its structure, architecture, and implementation. Use when exploring this MCP server's codebase, understanding how Local Skills MCP works internally, or contributing to the project.",
+        "best_description": "Expert guide for understanding the Local Skills MCP server repository - its structure, architecture, and implementation. Use when exploring this MCP server's codebase, understanding how Local Skills MCP works internally, or contributing to the project.",
+        "best_score": "2/4",
+        "best_train_score": "4/8",
+        "best_test_score": "2/4",
+        "final_description": "Invoke when the user is reading, navigating, or contributing to the local-skills-mcp source code itself. Covers questions like: where is a function implemented, how do two source files interact, what does a specific module do, how are tests organized, what is the build process. Key signals: mentions of src/index.ts, src/skill-loader.ts, src/types.ts, functions like loadSkills or getAllSkillsDirectories, validate_skill, evaluate_skill, integration tests, or any request to trace code paths through this MCP server's internals.",
+        "iterations_run": 3,
+        "holdout": 0.4,
+        "train_size": 8,
+        "test_size": 4,
+        "history": [
+          {
+            "iteration": 1,
+            "description": "Expert guide for understanding the Local Skills MCP server repository - its structure, architecture, and implementation. Use when exploring this MCP server's codebase, understanding how Local Skills MCP works internally, or contributing to the project.",
+            "train_passed": 4,
+            "train_failed": 4,
+            "train_total": 8,
+            "train_results": [
+              {
+                "query": "Point me to where validate_skill and evaluate_skill are implemented in this repository.",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "Walk me through getAllSkillsDirectories priority and override behavior in this codebase.",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "Explain how src/index.ts and src/skill-loader.ts work together in local-skills-mcp.",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "How are integration tests structured in this local-skills-mcp project?",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "Write a SQL query for monthly active users grouped by country.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              },
+              {
+                "query": "Plan a 3-day Seattle trip with coffee shops and museums.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              },
+              {
+                "query": "Set up an nginx reverse proxy with TLS on Ubuntu.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              },
+              {
+                "query": "Generate a conventional commit message for these staged files.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              }
+            ],
+            "test_passed": 2,
+            "test_failed": 2,
+            "test_total": 4,
+            "test_results": [
+              {
+                "query": "How does local-skills-mcp discover skills and merge metadata across directories?",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "In this local-skills-mcp repo, where are the MCP tool handlers defined and how are they registered?",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "Help me debug a React input lag issue in a controlled component.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              },
+              {
+                "query": "Where should I store a personal reusable skill: ~/.claude/skills or ./skills?",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              }
+            ],
+            "passed": 4,
+            "failed": 4,
+            "total": 8,
+            "results": [
+              {
+                "query": "Point me to where validate_skill and evaluate_skill are implemented in this repository.",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "Walk me through getAllSkillsDirectories priority and override behavior in this codebase.",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "Explain how src/index.ts and src/skill-loader.ts work together in local-skills-mcp.",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "How are integration tests structured in this local-skills-mcp project?",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "Write a SQL query for monthly active users grouped by country.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              },
+              {
+                "query": "Plan a 3-day Seattle trip with coffee shops and museums.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              },
+              {
+                "query": "Set up an nginx reverse proxy with TLS on Ubuntu.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              },
+              {
+                "query": "Generate a conventional commit message for these staged files.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              }
+            ]
+          },
+          {
+            "iteration": 2,
+            "description": "Use when the user wants to navigate, understand, or contribute to the local-skills-mcp source code repository. Triggers for questions about specific source files (src/index.ts, src/skill-loader.ts, src/types.ts), internal functions (loadSkills, getAllSkillsDirectories, validate_skill, evaluate_skill), how components interact, where logic is implemented, test structure, build process, or architecture of the MCP server codebase itself. Also use when exploring directory layout, tracing code paths, or understanding how the server processes skill loading, validation, and aggregation internally.",
+            "train_passed": 4,
+            "train_failed": 4,
+            "train_total": 8,
+            "train_results": [
+              {
+                "query": "Point me to where validate_skill and evaluate_skill are implemented in this repository.",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "Walk me through getAllSkillsDirectories priority and override behavior in this codebase.",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "Explain how src/index.ts and src/skill-loader.ts work together in local-skills-mcp.",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "How are integration tests structured in this local-skills-mcp project?",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "Write a SQL query for monthly active users grouped by country.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              },
+              {
+                "query": "Plan a 3-day Seattle trip with coffee shops and museums.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              },
+              {
+                "query": "Set up an nginx reverse proxy with TLS on Ubuntu.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              },
+              {
+                "query": "Generate a conventional commit message for these staged files.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              }
+            ],
+            "test_passed": 2,
+            "test_failed": 2,
+            "test_total": 4,
+            "test_results": [
+              {
+                "query": "How does local-skills-mcp discover skills and merge metadata across directories?",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "In this local-skills-mcp repo, where are the MCP tool handlers defined and how are they registered?",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "Help me debug a React input lag issue in a controlled component.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              },
+              {
+                "query": "Where should I store a personal reusable skill: ~/.claude/skills or ./skills?",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              }
+            ],
+            "passed": 4,
+            "failed": 4,
+            "total": 8,
+            "results": [
+              {
+                "query": "Point me to where validate_skill and evaluate_skill are implemented in this repository.",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "Walk me through getAllSkillsDirectories priority and override behavior in this codebase.",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "Explain how src/index.ts and src/skill-loader.ts work together in local-skills-mcp.",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "How are integration tests structured in this local-skills-mcp project?",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "Write a SQL query for monthly active users grouped by country.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              },
+              {
+                "query": "Plan a 3-day Seattle trip with coffee shops and museums.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              },
+              {
+                "query": "Set up an nginx reverse proxy with TLS on Ubuntu.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              },
+              {
+                "query": "Generate a conventional commit message for these staged files.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              }
+            ]
+          },
+          {
+            "iteration": 3,
+            "description": "Invoke when the user is reading, navigating, or contributing to the local-skills-mcp source code itself. Covers questions like: where is a function implemented, how do two source files interact, what does a specific module do, how are tests organized, what is the build process. Key signals: mentions of src/index.ts, src/skill-loader.ts, src/types.ts, functions like loadSkills or getAllSkillsDirectories, validate_skill, evaluate_skill, integration tests, or any request to trace code paths through this MCP server's internals.",
+            "train_passed": 4,
+            "train_failed": 4,
+            "train_total": 8,
+            "train_results": [
+              {
+                "query": "Walk me through getAllSkillsDirectories priority and override behavior in this codebase.",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "Explain how src/index.ts and src/skill-loader.ts work together in local-skills-mcp.",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "Point me to where validate_skill and evaluate_skill are implemented in this repository.",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "How are integration tests structured in this local-skills-mcp project?",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "Write a SQL query for monthly active users grouped by country.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              },
+              {
+                "query": "Plan a 3-day Seattle trip with coffee shops and museums.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              },
+              {
+                "query": "Set up an nginx reverse proxy with TLS on Ubuntu.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              },
+              {
+                "query": "Generate a conventional commit message for these staged files.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              }
+            ],
+            "test_passed": 2,
+            "test_failed": 2,
+            "test_total": 4,
+            "test_results": [
+              {
+                "query": "How does local-skills-mcp discover skills and merge metadata across directories?",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "In this local-skills-mcp repo, where are the MCP tool handlers defined and how are they registered?",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "Help me debug a React input lag issue in a controlled component.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              },
+              {
+                "query": "Where should I store a personal reusable skill: ~/.claude/skills or ./skills?",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              }
+            ],
+            "passed": 4,
+            "failed": 4,
+            "total": 8,
+            "results": [
+              {
+                "query": "Walk me through getAllSkillsDirectories priority and override behavior in this codebase.",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "Explain how src/index.ts and src/skill-loader.ts work together in local-skills-mcp.",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "Point me to where validate_skill and evaluate_skill are implemented in this repository.",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "How are integration tests structured in this local-skills-mcp project?",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "Write a SQL query for monthly active users grouped by country.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              },
+              {
+                "query": "Plan a 3-day Seattle trip with coffee shops and museums.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              },
+              {
+                "query": "Set up an nginx reverse proxy with TLS on Ubuntu.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              },
+              {
+                "query": "Generate a conventional commit message for these staged files.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "phase": "optimized",
+      "skill": "local-skills-mcp-usage",
+      "ok": true,
+      "duration_seconds": 373.9,
+      "result": {
+        "exit_reason": "max_iterations (3)",
+        "original_description": "Comprehensive guide for using Local Skills MCP - creating skills in the right locations, understanding skill directories, setup, and configuration. Use when creating new skills, deciding where to save skills, setting up the MCP server, or understanding how skill aggregation works.",
+        "best_description": "Comprehensive guide for using Local Skills MCP - creating skills in the right locations, understanding skill directories, setup, and configuration. Use when creating new skills, deciding where to save skills, setting up the MCP server, or understanding how skill aggregation works.",
+        "best_score": "2/4",
+        "best_train_score": "4/8",
+        "best_test_score": "2/4",
+        "final_description": "Invoke for any question about Local Skills MCP: installing it, adding it to Claude Code or Claude Desktop via mcp.json, where to put skill files (~/.claude/skills/ vs ./skills/), how skills are discovered and aggregated, hot-reload after edits, or SKILLS_DIR configuration. Trigger keywords: local-skills-mcp, skill directory, skill discoverable, mcp.json configuration, skill folder setup.",
+        "iterations_run": 3,
+        "holdout": 0.4,
+        "train_size": 8,
+        "test_size": 4,
+        "history": [
+          {
+            "iteration": 1,
+            "description": "Comprehensive guide for using Local Skills MCP - creating skills in the right locations, understanding skill directories, setup, and configuration. Use when creating new skills, deciding where to save skills, setting up the MCP server, or understanding how skill aggregation works.",
+            "train_passed": 4,
+            "train_failed": 4,
+            "train_total": 8,
+            "train_results": [
+              {
+                "query": "Show me how to configure local-skills-mcp in Claude Code mcp.json.",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "What is the fastest way to create a new skill folder and make it discoverable by Local Skills MCP?",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "How does Local Skills MCP hot-reload skill edits without restarting?",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "For Local Skills MCP, when should I put a skill in ~/.claude/skills versus ./skills?",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "Generate a docker-compose.yml for postgres + redis + api service.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              },
+              {
+                "query": "Write a SQL migration that adds an index to users(email).",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              },
+              {
+                "query": "Help me choose between an M3 MacBook Air and Pro.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              },
+              {
+                "query": "Review this Python function for performance issues and suggest optimizations.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              }
+            ],
+            "test_passed": 2,
+            "test_failed": 2,
+            "test_total": 4,
+            "test_results": [
+              {
+                "query": "How do I add a project-specific skill so my team gets it from git?",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "Explain the directory precedence between ~/.claude/skills, ./.claude/skills, ./skills, and SKILLS_DIR.",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "What will the weather be in New York this weekend?",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              },
+              {
+                "query": "Explain the implementation details of skill metadata truncation in src/index.ts.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              }
+            ],
+            "passed": 4,
+            "failed": 4,
+            "total": 8,
+            "results": [
+              {
+                "query": "Show me how to configure local-skills-mcp in Claude Code mcp.json.",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "What is the fastest way to create a new skill folder and make it discoverable by Local Skills MCP?",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "How does Local Skills MCP hot-reload skill edits without restarting?",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "For Local Skills MCP, when should I put a skill in ~/.claude/skills versus ./skills?",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "Generate a docker-compose.yml for postgres + redis + api service.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              },
+              {
+                "query": "Write a SQL migration that adds an index to users(email).",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              },
+              {
+                "query": "Help me choose between an M3 MacBook Air and Pro.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              },
+              {
+                "query": "Review this Python function for performance issues and suggest optimizations.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              }
+            ]
+          },
+          {
+            "iteration": 2,
+            "description": "Use this skill for anything related to Local Skills MCP: configuring it in mcp.json, adding it to Claude Code or Claude Desktop, setting up skill directories, understanding where to place skills (~/.claude/skills/ vs ./skills/), hot-reload behavior, skill discovery, aggregation priority, and the SKILLS_DIR environment variable. Invoke for questions about installing, configuring, or operating the Local Skills MCP server itself.",
+            "train_passed": 4,
+            "train_failed": 4,
+            "train_total": 8,
+            "train_results": [
+              {
+                "query": "What is the fastest way to create a new skill folder and make it discoverable by Local Skills MCP?",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "Show me how to configure local-skills-mcp in Claude Code mcp.json.",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "For Local Skills MCP, when should I put a skill in ~/.claude/skills versus ./skills?",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "How does Local Skills MCP hot-reload skill edits without restarting?",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "Generate a docker-compose.yml for postgres + redis + api service.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              },
+              {
+                "query": "Help me choose between an M3 MacBook Air and Pro.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              },
+              {
+                "query": "Write a SQL migration that adds an index to users(email).",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              },
+              {
+                "query": "Review this Python function for performance issues and suggest optimizations.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              }
+            ],
+            "test_passed": 2,
+            "test_failed": 2,
+            "test_total": 4,
+            "test_results": [
+              {
+                "query": "How do I add a project-specific skill so my team gets it from git?",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "Explain the directory precedence between ~/.claude/skills, ./.claude/skills, ./skills, and SKILLS_DIR.",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "What will the weather be in New York this weekend?",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              },
+              {
+                "query": "Explain the implementation details of skill metadata truncation in src/index.ts.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              }
+            ],
+            "passed": 4,
+            "failed": 4,
+            "total": 8,
+            "results": [
+              {
+                "query": "What is the fastest way to create a new skill folder and make it discoverable by Local Skills MCP?",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "Show me how to configure local-skills-mcp in Claude Code mcp.json.",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "For Local Skills MCP, when should I put a skill in ~/.claude/skills versus ./skills?",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "How does Local Skills MCP hot-reload skill edits without restarting?",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "Generate a docker-compose.yml for postgres + redis + api service.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              },
+              {
+                "query": "Help me choose between an M3 MacBook Air and Pro.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              },
+              {
+                "query": "Write a SQL migration that adds an index to users(email).",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              },
+              {
+                "query": "Review this Python function for performance issues and suggest optimizations.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              }
+            ]
+          },
+          {
+            "iteration": 3,
+            "description": "Invoke for any question about Local Skills MCP: installing it, adding it to Claude Code or Claude Desktop via mcp.json, where to put skill files (~/.claude/skills/ vs ./skills/), how skills are discovered and aggregated, hot-reload after edits, or SKILLS_DIR configuration. Trigger keywords: local-skills-mcp, skill directory, skill discoverable, mcp.json configuration, skill folder setup.",
+            "train_passed": 4,
+            "train_failed": 4,
+            "train_total": 8,
+            "train_results": [
+              {
+                "query": "Show me how to configure local-skills-mcp in Claude Code mcp.json.",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "What is the fastest way to create a new skill folder and make it discoverable by Local Skills MCP?",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "For Local Skills MCP, when should I put a skill in ~/.claude/skills versus ./skills?",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "How does Local Skills MCP hot-reload skill edits without restarting?",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "Generate a docker-compose.yml for postgres + redis + api service.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              },
+              {
+                "query": "Write a SQL migration that adds an index to users(email).",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              },
+              {
+                "query": "Help me choose between an M3 MacBook Air and Pro.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              },
+              {
+                "query": "Review this Python function for performance issues and suggest optimizations.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              }
+            ],
+            "test_passed": 2,
+            "test_failed": 2,
+            "test_total": 4,
+            "test_results": [
+              {
+                "query": "How do I add a project-specific skill so my team gets it from git?",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "Explain the directory precedence between ~/.claude/skills, ./.claude/skills, ./skills, and SKILLS_DIR.",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "What will the weather be in New York this weekend?",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              },
+              {
+                "query": "Explain the implementation details of skill metadata truncation in src/index.ts.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              }
+            ],
+            "passed": 4,
+            "failed": 4,
+            "total": 8,
+            "results": [
+              {
+                "query": "Show me how to configure local-skills-mcp in Claude Code mcp.json.",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "What is the fastest way to create a new skill folder and make it discoverable by Local Skills MCP?",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "For Local Skills MCP, when should I put a skill in ~/.claude/skills versus ./skills?",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "How does Local Skills MCP hot-reload skill edits without restarting?",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "Generate a docker-compose.yml for postgres + redis + api service.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              },
+              {
+                "query": "Write a SQL migration that adds an index to users(email).",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              },
+              {
+                "query": "Help me choose between an M3 MacBook Air and Pro.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              },
+              {
+                "query": "Review this Python function for performance issues and suggest optimizations.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "phase": "optimized",
+      "skill": "skill-creator",
+      "ok": true,
+      "duration_seconds": 376.08,
+      "result": {
+        "exit_reason": "max_iterations (3)",
+        "original_description": "Creates effective SKILL.md files with proper YAML frontmatter, trigger keywords, and best practices. Use when creating skills, writing skill descriptions, authoring SKILL.md files, or learning skill format.",
+        "best_description": "Creates effective SKILL.md files with proper YAML frontmatter, trigger keywords, and best practices. Use when creating skills, writing skill descriptions, authoring SKILL.md files, or learning skill format.",
+        "best_score": "2/4",
+        "best_train_score": "4/8",
+        "best_test_score": "2/4",
+        "final_description": "Use this skill to author, improve, validate, or evaluate Claude Code skills. Invoke it when you need to: write a new SKILL.md from scratch, fix or optimize an existing skill's description so it routes correctly, understand why a skill isn't triggering, interpret validation errors/warnings, design trigger keywords, or run an eval loop to score description quality against test cases. This is the go-to skill for anything in the skill authoring lifecycle — from initial drafting to eval-driven iteration.",
+        "iterations_run": 3,
+        "holdout": 0.4,
+        "train_size": 8,
+        "test_size": 4,
+        "history": [
+          {
+            "iteration": 1,
+            "description": "Creates effective SKILL.md files with proper YAML frontmatter, trigger keywords, and best practices. Use when creating skills, writing skill descriptions, authoring SKILL.md files, or learning skill format.",
+            "train_passed": 4,
+            "train_failed": 4,
+            "train_total": 8,
+            "train_results": [
+              {
+                "query": "How do I validate a skill and interpret errors vs warnings?",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "I want to improve an existing skill's routing quality. Suggest better trigger keywords.",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "Create a new SKILL.md for a code-review assistant and write a good description with clear Use when triggers.",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "Guide me through evaluating a skill description against an eval set.",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "Write a SQL query to find duplicate rows in orders.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              },
+              {
+                "query": "Explain Kubernetes HPA tuning strategies for CPU spikes.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              },
+              {
+                "query": "Generate an incident response checklist for on-call rotation.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              },
+              {
+                "query": "Debug this React useEffect dependency loop.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              }
+            ],
+            "test_passed": 2,
+            "test_failed": 2,
+            "test_total": 4,
+            "test_results": [
+              {
+                "query": "Can you review my skill frontmatter and fix name/description issues?",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "Help me author a complete SKILL.md template with role, task, constraints, and output format.",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "Plan a 5-day Tokyo itinerary with ramen spots.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              },
+              {
+                "query": "Set up nginx with Let's Encrypt for my VPS.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              }
+            ],
+            "passed": 4,
+            "failed": 4,
+            "total": 8,
+            "results": [
+              {
+                "query": "How do I validate a skill and interpret errors vs warnings?",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "I want to improve an existing skill's routing quality. Suggest better trigger keywords.",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "Create a new SKILL.md for a code-review assistant and write a good description with clear Use when triggers.",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "Guide me through evaluating a skill description against an eval set.",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "Write a SQL query to find duplicate rows in orders.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              },
+              {
+                "query": "Explain Kubernetes HPA tuning strategies for CPU spikes.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              },
+              {
+                "query": "Generate an incident response checklist for on-call rotation.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              },
+              {
+                "query": "Debug this React useEffect dependency loop.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              }
+            ]
+          },
+          {
+            "iteration": 2,
+            "description": "Use this skill when working with Claude Code skills: creating new SKILL.md files, improving existing skill descriptions, troubleshooting skill routing (why a skill isn't triggering), writing trigger keywords, validating skill frontmatter, evaluating skill quality against test cases, or learning the skill authoring format. Covers the full skill lifecycle from drafting through validation and eval-driven optimization.",
+            "train_passed": 4,
+            "train_failed": 4,
+            "train_total": 8,
+            "train_results": [
+              {
+                "query": "I want to improve an existing skill's routing quality. Suggest better trigger keywords.",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "How do I validate a skill and interpret errors vs warnings?",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "Create a new SKILL.md for a code-review assistant and write a good description with clear Use when triggers.",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "Guide me through evaluating a skill description against an eval set.",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "Write a SQL query to find duplicate rows in orders.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              },
+              {
+                "query": "Generate an incident response checklist for on-call rotation.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              },
+              {
+                "query": "Explain Kubernetes HPA tuning strategies for CPU spikes.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              },
+              {
+                "query": "Debug this React useEffect dependency loop.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              }
+            ],
+            "test_passed": 2,
+            "test_failed": 2,
+            "test_total": 4,
+            "test_results": [
+              {
+                "query": "Help me author a complete SKILL.md template with role, task, constraints, and output format.",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "Can you review my skill frontmatter and fix name/description issues?",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "Plan a 5-day Tokyo itinerary with ramen spots.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              },
+              {
+                "query": "Set up nginx with Let's Encrypt for my VPS.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              }
+            ],
+            "passed": 4,
+            "failed": 4,
+            "total": 8,
+            "results": [
+              {
+                "query": "I want to improve an existing skill's routing quality. Suggest better trigger keywords.",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "How do I validate a skill and interpret errors vs warnings?",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "Create a new SKILL.md for a code-review assistant and write a good description with clear Use when triggers.",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "Guide me through evaluating a skill description against an eval set.",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "Write a SQL query to find duplicate rows in orders.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              },
+              {
+                "query": "Generate an incident response checklist for on-call rotation.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              },
+              {
+                "query": "Explain Kubernetes HPA tuning strategies for CPU spikes.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              },
+              {
+                "query": "Debug this React useEffect dependency loop.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              }
+            ]
+          },
+          {
+            "iteration": 3,
+            "description": "Use this skill to author, improve, validate, or evaluate Claude Code skills. Invoke it when you need to: write a new SKILL.md from scratch, fix or optimize an existing skill's description so it routes correctly, understand why a skill isn't triggering, interpret validation errors/warnings, design trigger keywords, or run an eval loop to score description quality against test cases. This is the go-to skill for anything in the skill authoring lifecycle — from initial drafting to eval-driven iteration.",
+            "train_passed": 4,
+            "train_failed": 4,
+            "train_total": 8,
+            "train_results": [
+              {
+                "query": "I want to improve an existing skill's routing quality. Suggest better trigger keywords.",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "How do I validate a skill and interpret errors vs warnings?",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "Create a new SKILL.md for a code-review assistant and write a good description with clear Use when triggers.",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "Guide me through evaluating a skill description against an eval set.",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "Write a SQL query to find duplicate rows in orders.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              },
+              {
+                "query": "Generate an incident response checklist for on-call rotation.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              },
+              {
+                "query": "Explain Kubernetes HPA tuning strategies for CPU spikes.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              },
+              {
+                "query": "Debug this React useEffect dependency loop.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              }
+            ],
+            "test_passed": 2,
+            "test_failed": 2,
+            "test_total": 4,
+            "test_results": [
+              {
+                "query": "Help me author a complete SKILL.md template with role, task, constraints, and output format.",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "Can you review my skill frontmatter and fix name/description issues?",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "Plan a 5-day Tokyo itinerary with ramen spots.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              },
+              {
+                "query": "Set up nginx with Let's Encrypt for my VPS.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              }
+            ],
+            "passed": 4,
+            "failed": 4,
+            "total": 8,
+            "results": [
+              {
+                "query": "I want to improve an existing skill's routing quality. Suggest better trigger keywords.",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "How do I validate a skill and interpret errors vs warnings?",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "Create a new SKILL.md for a code-review assistant and write a good description with clear Use when triggers.",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "Guide me through evaluating a skill description against an eval set.",
+                "should_trigger": true,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": false
+              },
+              {
+                "query": "Write a SQL query to find duplicate rows in orders.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              },
+              {
+                "query": "Generate an incident response checklist for on-call rotation.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              },
+              {
+                "query": "Explain Kubernetes HPA tuning strategies for CPU spikes.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              },
+              {
+                "query": "Debug this React useEffect dependency loop.",
+                "should_trigger": false,
+                "trigger_rate": 0,
+                "triggers": 0,
+                "runs": 3,
+                "pass": true
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}
