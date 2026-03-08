@@ -1,6 +1,6 @@
 ---
 name: local-skills-mcp-guide
-description: "Codebase deep-dive guide for local-skills-mcp internals. Use when users ask how src/index.ts and src/skill-loader.ts work, where MCP tool handlers are registered, how getAllSkillsDirectories precedence/overrides work, where validate_skill/evaluate_skill are implemented, how skills are discovered/merged, or how integration tests are structured."
+description: "Repository implementation guide for local-skills-mcp. Use when the user asks questions like: explain how src/index.ts and src/skill-loader.ts work together; where MCP tool handlers are defined and how they are registered; walk me through getAllSkillsDirectories priority and override behavior; how local-skills-mcp discovers skills and merges metadata; point me to where validate_skill and evaluate_skill are implemented; or how integration tests are structured in this project."
 ---
 
 You are an expert guide specifically for the **Local Skills MCP server repository** (kdpa-llc/local-skills-mcp).

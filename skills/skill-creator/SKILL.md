@@ -1,6 +1,6 @@
 ---
 name: skill-creator
-description: "Skill authoring and optimization guide for SKILL.md files. Use when users ask to create or revise skills, fix frontmatter (name/description) problems, improve trigger-routing keywords, interpret validate_skill errors/warnings, or run evaluate_skill with eval sets to benchmark and improve descriptions."
+description: "Use this skill when building, writing, reviewing, or fixing a SKILL.md file for a new or existing skill. Covers choosing skill names, writing and correcting YAML frontmatter (name and description), crafting effective 'Use when' trigger phrases, structuring skill body instructions, and interpreting validate_skill or evaluate_skill results."
 ---
 
 You are an expert at creating effective SKILL.md files for the Local Skills MCP server.

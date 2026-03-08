@@ -37,6 +37,7 @@
     "format:check": "prettier --check \"**/*.{ts,json,md}\"",
     "typecheck": "tsc --noEmit",
     "skills:benchmark-shipped": "node scripts/optimize-shipped-skills.js",
+    "skills:benchmark-shipped:eval": "node scripts/benchmark-shipped-skills.js",
     "skills:optimize-shipped": "node scripts/optimize-shipped-skills.js --apply",
     "verify:links": "node scripts/verify-links.js",
     "generate:server-json": "node scripts/generate-server-json.js",
