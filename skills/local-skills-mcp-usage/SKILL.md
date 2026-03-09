@@ -1,6 +1,6 @@
 ---
 name: local-skills-mcp-usage
-description: "Operational guide for using Local Skills MCP in day-to-day projects. Use when asked where skills should live (~/.claude/skills, ./.claude/skills, ./skills, SKILLS_DIR), how directory precedence and overrides work, how to configure Claude Code mcp.json, how to create a discoverable skill folder quickly, how to share project skills via git, or how skill edits are picked up with hot reload and no restart."
+description: "Operational guide for using Local Skills MCP in day-to-day projects. Use when asked: where skills should live (~/.claude/skills, ./.claude/skills, ./skills, SKILLS_DIR); directory precedence and override rules; how to configure local-skills-mcp in Claude Code mcp.json; fastest way to create a new skill folder and make it discoverable; how to add project skills to git so the team gets them; or how Local Skills MCP hot-reloads skill edits without restarting."
 ---
 
 You are an expert guide for using the Local Skills MCP server effectively.

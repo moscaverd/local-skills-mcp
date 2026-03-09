@@ -16,7 +16,7 @@ function parseArgs(argv) {
   const defaults = {
     model: "sonnet",
     numWorkers: 1,
-    runsPerQuery: 1,
+    runsPerQuery: 3,
     repeats: 1,
     timeoutSeconds: 45,
     triggerThreshold: 0.5,
@@ -25,6 +25,7 @@ function parseArgs(argv) {
     descriptionOverridesPath: "",
     outputPath: "",
     label: "",
+    localSkillsMcpPath: "",
   };
 
   const args = { ...defaults };
@@ -71,6 +72,9 @@ function parseArgs(argv) {
         break;
       case "--label":
         args.label = next;
+        break;
+      case "--local-skills-mcp-path":
+        args.localSkillsMcpPath = next;
         break;
       default:
         throw new Error(`Unknown argument: ${token}`);
@@ -251,6 +255,12 @@ async function main() {
   const evalDir = path.join(repoRoot, "evals");
   fs.mkdirSync(evalDir, { recursive: true });
 
+  // Resolve local-skills-mcp path only if explicitly provided via --local-skills-mcp-path.
+  // By default, use command-file mode (creates .claude/commands/ files) which
+  // works correctly in this project. Pass --local-skills-mcp-path to switch to
+  // MCP mode for environments where command files are not auto-triggered.
+  const localSkillsMcpPath = args.localSkillsMcpPath || "";
+
   const startedAt = new Date().toISOString();
   const runId = new Date().toISOString().replace(/[:.]/g, "-");
   const skillReports = [];
@@ -270,7 +280,11 @@ async function main() {
     );
   }
 
-  for (const skillName of args.skills) {
+  // Run up to numWorkers skills in parallel (default 1 = sequential).
+  // run_eval.py always uses --num-workers 1 (sequential queries) so only one
+  // command file exists in .claude/commands/ at a time, preventing cross-skill
+  // contamination.
+  async function evalSkill(skillName) {
     const skillFilePath = path.join(repoRoot, "skills", skillName, "SKILL.md");
     const evalSetPath = path.join(repoRoot, "evals", `${skillName}.json`);
 
@@ -307,8 +321,10 @@ async function main() {
           path.join(repoRoot, "skills", skillName),
           "--description",
           description,
-          "--num-workers",
-          String(args.numWorkers),
+          // Always 1: parallel workers in the same commands dir cause
+          // interference (each UUID file is visible to all Claude subprocesses
+          // but each worker only watches for its own UUID).
+          "--num-workers", "1",
           "--runs-per-query",
           String(args.runsPerQuery),
           "--timeout",
@@ -317,6 +333,9 @@ async function main() {
           String(args.triggerThreshold),
           "--model",
           args.model,
+          ...(localSkillsMcpPath
+            ? ["--local-skills-mcp-path", localSkillsMcpPath]
+            : []),
         ],
         context: `run_eval (${skillName}, repeat ${i + 1}/${args.repeats})`,
       });
@@ -343,17 +362,24 @@ async function main() {
       runs: runSummaries,
     };
 
-    skillReports.push({
+    console.log(
+      `[${skillName}] median_passed=${summary.median_passed}/${summary.median_total} median_false_pos=${summary.median_false_positives} median_false_neg=${summary.median_false_negatives} median_score=${summary.median_score.toFixed(3)}`
+    );
+
+    return {
       skill: skillName,
       description,
       eval_set_size: scopedEvalSet.length,
       summary,
       raw_runs: evalRuns,
-    });
+    };
+  }
 
-    console.log(
-      `[${skillName}] median_passed=${summary.median_passed}/${summary.median_total} median_false_pos=${summary.median_false_positives} median_false_neg=${summary.median_false_negatives} median_score=${summary.median_score.toFixed(3)}`
-    );
+  // Run skills in batches of numWorkers in parallel.
+  for (let i = 0; i < args.skills.length; i += args.numWorkers) {
+    const batch = args.skills.slice(i, i + args.numWorkers);
+    const batchResults = await Promise.all(batch.map(evalSkill));
+    skillReports.push(...batchResults);
   }
 
   const output = {
@@ -362,7 +388,7 @@ async function main() {
     label: args.label || undefined,
     settings: {
       model: args.model,
-      num_workers: args.numWorkers,
+      num_workers_skills: args.numWorkers,
       runs_per_query: args.runsPerQuery,
       repeats: args.repeats,
       timeout_seconds: args.timeoutSeconds,
@@ -370,6 +396,7 @@ async function main() {
       eval_limit: args.evalLimit,
       skills: args.skills,
       description_overrides_path: args.descriptionOverridesPath || undefined,
+      local_skills_mcp_path: localSkillsMcpPath || undefined,
     },
     skills: skillReports,
   };
