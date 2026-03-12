@@ -171,7 +171,15 @@ export class SkillLoader {
    */
   async loadSkill(skillName: string): Promise<Skill> {
     // Get skill location from registry
-    const skillInfo = this.skillRegistry.get(skillName);
+    let skillInfo = this.skillRegistry.get(skillName);
+
+    // If skill is not found and registry is empty, try discovering skills first
+    // This handles cases where loadSkill is called before list_skills
+    if (!skillInfo && this.skillRegistry.size === 0) {
+      await this.discoverSkills();
+      skillInfo = this.skillRegistry.get(skillName);
+    }
+
     if (!skillInfo) {
       throw new Error(
         `Skill "${skillName}" not found. Run list_skills to see available skills.`
