@@ -45,3 +45,6 @@ CLAUDE.md
 
 # Generated files
 server.json
+
+# Eval/benchmark results
+evals/

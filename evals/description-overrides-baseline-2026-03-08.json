@@ -1,5 +1,0 @@
-{
-  "local-skills-mcp-guide": "Explains local-skills-mcp repository internals and code flow. Use when asked to walk through how src/index.ts and src/skill-loader.ts work together, where MCP tool handlers are registered, how getAllSkillsDirectories precedence and overrides are implemented, or where validate_skill and evaluate_skill logic lives.",
-  "local-skills-mcp-usage": "Practical guide for configuring and operating Local Skills MCP in real projects. Use when the user asks where to place skills (~/.claude/skills, ./.claude/skills, ./skills, or SKILLS_DIR), how precedence and overrides work, how to set up Claude Code mcp.json, or how to share and hot-reload project skills.",
-  "skill-creator": "Creates and improves SKILL.md skills with strong routing descriptions. Use when asked to create a new skill, rewrite a skill description with better 'Use when' trigger keywords, review or fix name/description frontmatter, build a complete SKILL.md template, or interpret validate_skill and evaluate_skill results."
-}
