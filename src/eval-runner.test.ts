@@ -134,8 +134,8 @@ describe("eval-runner", () => {
     const promise = evaluateSkill(
       {
         skill_name: "skill-a",
-        skill_path: "/repo/skills/skill-a",
-        eval_set_path: "/repo/evals/skill-a.json",
+        skill_path: path.join("/repo", "skills", "skill-a"),
+        eval_set_path: path.join("/repo", "evals", "skill-a.json"),
         max_iterations: 2,
         holdout: 0.25,
         trigger_threshold: 0.7,
@@ -164,11 +164,13 @@ describe("eval-runner", () => {
 
     expect(spawn).toHaveBeenCalledWith(
       "python3",
-      expect.arrayContaining([
+      [
         "-m",
         "scripts.run_loop",
         "--skill-path",
+        path.join("/repo", "skills", "skill-a"),
         "--eval-set",
+        path.join("/repo", "evals", "skill-a.json"),
         "--model",
         "sonnet",
         "--report",
@@ -187,7 +189,7 @@ describe("eval-runner", () => {
         "override description",
         "--max-iterations",
         "2",
-      ]),
+      ],
       {
         cwd: path.join(
           "/repo",
