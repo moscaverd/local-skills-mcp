@@ -84,7 +84,7 @@ cd local-skills-mcp
 npm install  # The prepare script auto-builds
 ```
 
-**Requirements:** Node.js 18+, any MCP-compatible client
+**Requirements:** Node.js 20+, any MCP-compatible client
 
 ### Configure MCP Client
 
@@ -213,6 +213,7 @@ Claude uses language understanding to decide when to invoke skills—specific tr
 3. Full skill content loads with detailed instructions
 
 **Built-in Skills:** The package includes three self-documenting skills that explain how to use Local Skills MCP and create new skills. These are available immediately after installation:
+
 - `local-skills-mcp-usage` - Quick usage guide
 - `local-skills-mcp-guide` - Comprehensive documentation
 - `skill-creator` - Skill authoring best practices
@@ -348,10 +349,12 @@ Note: This project follows a [Code of Conduct][code-of-conduct].
 While Local Skills MCP provides expert prompt instructions, [MCP Compression Proxy][mcp-tool-aggregator] optimizes your tool descriptions with intelligent LLM-based compression.
 
 **Perfect combination:**
+
 - **Local Skills MCP** - Expert skills with lazy loading (~50 tokens/skill)
 - **MCP Compression Proxy** - Compressed tool descriptions (50-80% token reduction)
 
 **Together they enable:**
+
 - 🎯 Maximum context efficiency across skills AND tools
 - 🔗 Access to multiple MCP servers through one connection
 - ⚡ Minimal token consumption for large-scale workflows
@@ -405,7 +408,7 @@ Made with ❤️ by KDPA
 [npm-types-badge]: https://img.shields.io/npm/types/local-skills-mcp
 [license-badge]: https://img.shields.io/badge/License-MIT-yellow.svg
 [license]: https://opensource.org/licenses/MIT
-[node-badge]: https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen.svg
+[node-badge]: https://img.shields.io/badge/node-%3E%3D20.0.0-brightgreen.svg
 [nodejs]: https://nodejs.org/
 [mcp-badge]: https://img.shields.io/badge/MCP-Compatible-purple.svg
 [mcp-protocol]: https://modelcontextprotocol.io/

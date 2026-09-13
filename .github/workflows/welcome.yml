@@ -17,8 +17,8 @@ jobs:
       - name: Welcome first-time contributors
         uses: actions/first-interaction@v3
         with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          issue-message: |
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          issue_message: |
             Welcome to the local-skills-mcp project! :wave:
 
             Thank you for opening your first issue! We appreciate you taking the time to contribute.
@@ -29,7 +29,7 @@ jobs:
             - Join our community discussions if you have questions
 
             We're excited to have you here!
-          pr-message: |
+          pr_message: |
             Welcome to the local-skills-mcp project! :tada:
 
             Thank you for submitting your first pull request! We're thrilled to have your contribution.

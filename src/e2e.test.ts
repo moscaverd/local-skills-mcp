@@ -1,6 +1,8 @@
 import { describe, it, expect, beforeEach, afterEach } from "vitest";
 import { spawn, ChildProcess } from "child_process";
-import { resolve } from "path";
+import { resolve, join } from "path";
+import fs from "fs";
+import os from "os";
 
 // Increase max listeners to prevent warnings during tests
 process.setMaxListeners(20);
@@ -43,11 +45,13 @@ class StdioMCPClient {
   private buffer = "";
   private requestId = 0;
 
-  async start(serverPath: string): Promise<void> {
+  async start(serverPath: string, fixtureRoot: string): Promise<void> {
     return new Promise((resolve, reject) => {
       // Windows-specific spawn options
       const spawnOptions: any = {
         stdio: ["pipe", "pipe", "pipe"],
+        cwd: fixtureRoot,
+        env: { ...process.env, SKILLS_DIR: join(fixtureRoot, "skills") },
       };
 
       // On Windows, hide the console window
@@ -55,7 +59,11 @@ class StdioMCPClient {
         spawnOptions.windowsHide = true;
       }
 
-      this.serverProcess = spawn("node", [serverPath], spawnOptions);
+      this.serverProcess = spawn(
+        process.execPath,
+        ["--require", join(fixtureRoot, "isolate-home.cjs"), serverPath],
+        spawnOptions
+      );
 
       if (
         !this.serverProcess.stdout ||
@@ -237,15 +245,24 @@ const describeE2E = process.platform === "win32" ? describe.skip : describe;
 
 describeE2E("E2E Tests - Subprocess with Stdio Transport", () => {
   let client: StdioMCPClient;
+  let fixtureRoot: string;
   const serverPath = resolve(__dirname, "../dist/index.js");
 
   beforeEach(async () => {
+    fixtureRoot = fs.mkdtempSync(join(os.tmpdir(), "skills-e2e-"));
+    fs.mkdirSync(join(fixtureRoot, "skills"));
+    // Isolate only this subprocess's home lookup, without changing HOME.
+    fs.writeFileSync(
+      join(fixtureRoot, "isolate-home.cjs"),
+      'require("node:os").homedir = () => process.cwd(); require("node:module").syncBuiltinESMExports();'
+    );
     client = new StdioMCPClient();
-    await client.start(serverPath);
+    await client.start(serverPath, fixtureRoot);
   });
 
   afterEach(async () => {
     await client.stop();
+    fs.rmSync(fixtureRoot, { recursive: true, force: true });
     // Wait for all file handles to be released before starting next test
     // Windows needs significantly more time for complete process cleanup
     const cleanupDelay = process.platform === "win32" ? 1000 : 100;
@@ -504,10 +521,13 @@ describeE2E("E2E Tests - Subprocess with Stdio Transport", () => {
         },
       });
 
-      // Should return error as tool result (skill not found)
+      // Reject path-shaped names before filesystem lookup.
       expect(result.content).toBeDefined();
       expect(result.content[0].type).toBe("text");
-      expect(result.content[0].text).toContain("not found");
+      expect(result.content[0].text).toContain("Invalid skill_name");
+      expect(result.content[0].text).toContain(
+        "single directory name, not a path"
+      );
     });
   });
 });

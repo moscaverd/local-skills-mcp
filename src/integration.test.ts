@@ -57,9 +57,11 @@ describe("Integration Tests - MCP Protocol Flow", () => {
   let clientTransport: InMemoryTransport;
   let serverTransport: InMemoryTransport;
   let originalCwd: string;
+  let originalListeners: NodeJS.SignalsListener[];
 
   beforeEach(async () => {
     originalCwd = process.cwd();
+    originalListeners = process.listeners("SIGINT");
 
     // Create temporary directory for test fixtures
     // Use realpathSync to resolve any symlinks (important on macOS where /var -> /private/var)
@@ -107,7 +109,7 @@ It provides different guidance.`
     [clientTransport, serverTransport] = InMemoryTransport.createLinkedPair();
 
     // Create server
-    server = new LocalSkillsServer();
+    server = new LocalSkillsServer([skillsDir]);
 
     // Create client
     client = new Client(
@@ -134,6 +136,11 @@ It provides different guidance.`
       await server.close();
     } catch {
       // Ignore cleanup errors
+    }
+
+    for (const listener of process.listeners("SIGINT")) {
+      if (!originalListeners.includes(listener))
+        process.removeListener("SIGINT", listener);
     }
 
     // Wait for all file handles to be released (Windows needs significantly more time)
@@ -179,6 +186,33 @@ It provides different guidance.`
       expect(callResponse).toBeDefined();
       expect(callResponse.content).toBeDefined();
     });
+  });
+
+  it("loads a cold skill through MCP before tools/list and discovers a newly added skill", async () => {
+    await (server as any).server.connect(serverTransport);
+    await client.connect(clientTransport);
+    const cold = await client.callTool({
+      name: "get_skill",
+      arguments: { skill_name: "test-skill-1" },
+    });
+    expect(cold.content).toEqual([
+      {
+        type: "text",
+        text: expect.stringContaining("This is the content of test skill 1."),
+      },
+    ]);
+    fs.mkdirSync(path.join(skillsDir, "new-skill"));
+    fs.writeFileSync(
+      path.join(skillsDir, "new-skill", "SKILL.md"),
+      "---\nname: New Skill\ndescription: Added after startup\n---\nNew fixture content"
+    );
+    const added = await client.callTool({
+      name: "get_skill",
+      arguments: { skill_name: "new-skill" },
+    });
+    expect(added.content).toEqual([
+      { type: "text", text: expect.stringContaining("New fixture content") },
+    ]);
   });
 
   describe("ListTools Request", () => {
@@ -329,13 +363,8 @@ It provides different guidance.`
     });
 
     it("should include source directory in skill output", async () => {
-      // Skip if no skills available
-      if (availableSkills.length === 0) {
-        expect(true).toBe(true);
-        return;
-      }
-
-      const skillToTest = availableSkills[0];
+      expect(availableSkills).toContain("test-skill-1");
+      const skillToTest = "test-skill-1";
 
       const response = await client.callTool({
         name: "get_skill",
@@ -345,9 +374,7 @@ It provides different guidance.`
       });
 
       const text = (response.content as any[])[0].text;
-      expect(text).toContain("**Source:**");
-      // Should contain some path
-      expect(text).toMatch(/\/.*skills/);
+      expect(text).toContain(`**Source:** ${skillsDir}`);
     });
   });
 
@@ -506,7 +533,7 @@ It provides different guidance.`
           InMemoryTransport.createLinkedPair();
 
         // Create server in empty directory
-        const emptyServer = new LocalSkillsServer();
+        const emptyServer = new LocalSkillsServer([emptySkillsDir]);
         const emptyClient = new Client(
           { name: "empty-test-client", version: "1.0.0" },
           { capabilities: {} }
@@ -522,10 +549,9 @@ It provides different guidance.`
         expect(tool?.description).toBeDefined();
 
         // But description should indicate no skills
-        expect(
-          tool!.description!.includes("No skills currently available") ||
-            tool!.description!.includes("Available skills")
-        ).toBe(true);
+        expect(tool!.description).toContain("No skills currently available");
+        expect(tool!.description).toContain(emptySkillsDir);
+        expect(tool!.description).not.toContain("Available skills:");
 
         await emptyClient.close();
         await (emptyServer as any).server.close();

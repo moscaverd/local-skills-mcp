@@ -365,6 +365,7 @@ flowchart TD
 ### LocalSkillsServer
 
 **Responsibilities:**
+
 - Initialize and manage MCP server
 - Handle MCP protocol requests
 - Coordinate with SkillLoader
@@ -372,24 +373,28 @@ flowchart TD
 - Handle graceful shutdown
 
 **Key Methods:**
+
 - `setupHandlers()`: Register MCP request handlers
 - `setupErrorHandling()`: Configure error handlers and signals
 - `handleGetSkill()`: Process get_skill tool calls
 - `run()`: Start server and connect transport
 
 **State:**
+
 - `server`: MCP Server instance
 - `skillLoader`: SkillLoader instance
 
 ### SkillLoader
 
 **Responsibilities:**
+
 - Discover skills across multiple directories
 - Load and parse SKILL.md files
 - Maintain skill cache and registry
 - Validate skill format and metadata
 
 **Key Methods:**
+
 - `discoverSkills()`: Scan directories and build registry
 - `loadSkill()`: Load specific skill with caching
 - `parseSkillFile()`: Parse YAML frontmatter and content
@@ -397,6 +402,7 @@ flowchart TD
 - `getSkillsPaths()`: Return configured directories
 
 **State:**
+
 - `skillsPaths`: Array of directory paths
 - `skillCache`: Map of loaded skills
 - `skillRegistry`: Map of skill locations
@@ -440,12 +446,14 @@ Client Response
 **Decision**: Load skill content only when requested, not at startup.
 
 **Rationale:**
+
 - Reduces initial server startup time
 - Minimizes memory usage for unused skills
 - Allows quick tool listing without I/O delay
 - Scales better with large skill libraries
 
 **Trade-offs:**
+
 - First access to a skill has slight delay
 - Can't detect malformed skills until accessed
 
@@ -454,12 +462,14 @@ Client Response
 **Decision**: Support multiple skill directories with priority override.
 
 **Rationale:**
+
 - Enables global skills shared across projects
 - Allows per-project skill customization
 - Supports multiple team skill repositories
 - Maintains compatibility with Claude's `.claude/skills` convention
 
 **Trade-offs:**
+
 - More complex directory scanning logic
 - Potential for confusion about which skill version is active
 
@@ -468,12 +478,14 @@ Client Response
 **Decision**: Use YAML frontmatter in Markdown files for metadata.
 
 **Rationale:**
+
 - Human-readable and editable
 - Standard pattern (Jekyll, Hugo, etc.)
 - Separates metadata from content
 - Easy to parse with existing libraries
 
 **Trade-offs:**
+
 - Requires strict format validation
 - More complex parsing than pure JSON
 
@@ -482,12 +494,14 @@ Client Response
 **Decision**: Cache loaded skills in memory without TTL or invalidation.
 
 **Rationale:**
+
 - Simple implementation
 - Maximum performance for repeated access
 - Skills rarely change during server runtime
 - Process restarts are quick and easy
 
 **Trade-offs:**
+
 - Requires server restart to pick up skill changes
 - Memory grows with number of accessed skills
 - No automatic cache invalidation
@@ -497,12 +511,14 @@ Client Response
 **Decision**: Use stdio for MCP communication (not HTTP or WebSocket).
 
 **Rationale:**
+
 - Standard MCP pattern for local servers
 - Simple process communication
 - No port conflicts or firewall issues
 - Built-in backpressure handling
 
 **Trade-offs:**
+
 - Can't be accessed remotely
 - Single client per server instance
 - Debugging is harder (stdio is used for protocol)
@@ -535,11 +551,13 @@ Client Response
 ### Scalability
 
 **Tested Limits:**
+
 - 100+ skills per directory: ✓ Fast
 - 1000+ skills per directory: ✓ Acceptable (~100-200ms discovery)
 - Multiple directories: ✓ Linear scaling
 
 **Memory Usage:**
+
 - Server baseline: ~20-30 MB
 - Per cached skill: ~1-10 KB (depending on content size)
 - Expected total: < 100 MB for typical usage

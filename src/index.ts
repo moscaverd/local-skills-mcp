@@ -91,7 +91,27 @@ export function getAllSkillsDirectories(): string[] {
   return directories;
 }
 
-const SKILLS_DIRS = getAllSkillsDirectories();
+export function requireSkillName(value: unknown): string {
+  if (typeof value !== "string" || value.trim().length === 0) {
+    throw new Error("skill_name is required and must be a non-empty string");
+  }
+
+  const skillName = value.trim();
+
+  if (
+    skillName.includes("/") ||
+    skillName.includes("\\") ||
+    skillName.includes("\0") ||
+    skillName === "." ||
+    skillName === ".."
+  ) {
+    throw new Error(
+      `Invalid skill_name "${skillName}". A skill name is a single directory name, not a path.`
+    );
+  }
+
+  return skillName;
+}
 
 /**
  * Main MCP server class for serving skills to AI clients.
@@ -116,7 +136,7 @@ export class LocalSkillsServer {
    * Initializes the MCP server with capabilities, creates a SkillLoader
    * for all configured directories, and sets up request handlers.
    */
-  constructor() {
+  constructor(private skillsDirs: string[] = getAllSkillsDirectories()) {
     this.server = new Server(
       {
         name: "local-skills-mcp",
@@ -130,7 +150,7 @@ export class LocalSkillsServer {
       }
     );
 
-    this.skillLoader = new SkillLoader(SKILLS_DIRS);
+    this.skillLoader = new SkillLoader(this.skillsDirs);
 
     this.setupHandlers();
     this.setupErrorHandling();
@@ -181,6 +201,12 @@ export class LocalSkillsServer {
           }
         }
         getSkillDescription += `\n\nAvailable skills:\n${skillsWithDescriptions.join("\n")}`;
+      } else {
+        const searched =
+          this.skillsDirs.length > 0
+            ? this.skillsDirs.map((dir) => `- ${dir}`).join("\n")
+            : "- (none configured)";
+        getSkillDescription += `\n\nNo skills currently available. Check configured directories:\n${searched}`;
       }
 
       const tools: Tool[] = [
@@ -307,28 +333,14 @@ export class LocalSkillsServer {
     });
   }
 
-  private resolveSkillFilePath(skillName: string): string | null {
-    for (let i = SKILLS_DIRS.length - 1; i >= 0; i--) {
-      const candidate = path.join(SKILLS_DIRS[i], skillName, "SKILL.md");
-      if (fs.existsSync(candidate)) {
-        return candidate;
-      }
-    }
-    return null;
-  }
-
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   private async handleValidateSkill(args: any) {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
-    const skillName = args?.skill_name;
-    if (!skillName) {
-      throw new Error("skill_name is required");
-    }
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+    const skillName = requireSkillName(args?.skill_name);
 
-    const skillFilePath = this.resolveSkillFilePath(skillName as string);
-    if (!skillFilePath) {
-      throw new Error(`Skill "${skillName}" not found.`);
-    }
+    // Use discovery's registry boundary without parsing potentially invalid files.
+    const location = await this.skillLoader.getSkillLocation(skillName);
+    const skillFilePath = path.join(location.path, "SKILL.md");
 
     const result = await validateSkillFile(skillFilePath);
 
@@ -344,20 +356,15 @@ export class LocalSkillsServer {
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   private async handleEvaluateSkill(args: any) {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
-    const skillName = args?.skill_name;
-    if (!skillName) {
-      throw new Error("skill_name is required");
-    }
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+    const skillName = requireSkillName(args?.skill_name);
 
-    const skillFilePath = this.resolveSkillFilePath(skillName as string);
-    if (!skillFilePath) {
-      throw new Error(`Skill "${skillName}" not found.`);
-    }
+    // Use discovery's registry boundary without parsing potentially invalid files.
+    const location = await this.skillLoader.getSkillLocation(skillName);
+    const skillFilePath = path.join(location.path, "SKILL.md");
 
     const result = await evaluateSkill(
       {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         skill_name: skillName,
         skill_path: path.dirname(skillFilePath),
         // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
@@ -394,13 +401,9 @@ export class LocalSkillsServer {
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   private async handleGetSkill(args: any) {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
-    const skillName = args?.skill_name;
-    if (!skillName) {
-      throw new Error("skill_name is required");
-    }
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+    const skillName = requireSkillName(args?.skill_name);
 
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     const skill = await this.skillLoader.loadSkill(skillName);
 
     const output = [
@@ -450,9 +453,9 @@ export class LocalSkillsServer {
     await this.server.connect(transport);
     console.error(`Local Skills MCP Server v${VERSION} running on stdio`);
     console.error(
-      `Aggregating skills from ${SKILLS_DIRS.length} director${SKILLS_DIRS.length === 1 ? "y" : "ies"}:`
+      `Aggregating skills from ${this.skillsDirs.length} director${this.skillsDirs.length === 1 ? "y" : "ies"}:`
     );
-    SKILLS_DIRS.forEach((dir) => console.error(`  - ${dir}`));
+    this.skillsDirs.forEach((dir) => console.error(`  - ${dir}`));
   }
 
   /**

@@ -9,6 +9,7 @@ The `main` branch is the production-ready branch and has strict protection rules
 ### Required Settings
 
 #### Pull Request Requirements
+
 - **Require a pull request before merging**: Enabled
   - **Required approvals**: 1
   - **Dismiss stale reviews**: Enabled (when new commits are pushed)
@@ -16,23 +17,28 @@ The `main` branch is the production-ready branch and has strict protection rules
   - **Restrict who can dismiss pull request reviews**: Only maintainers
 
 #### Status Checks
+
 The following status checks must pass before merging:
+
 - `test` - Full test suite execution
 - `lint` - Code linting (ESLint)
 - `typecheck` - TypeScript type checking
 - `build` - Successful build verification
 
 **Additional Requirements**:
+
 - Require branches to be up to date before merging
 - Require status checks to pass
 
 #### Push Restrictions
+
 - **Restrict pushes that create matching branches**: Enabled
 - **Allowed to push**: `kdpa-llc/maintainers` team only
 - **Force pushes**: Disabled for everyone
 - **Branch deletions**: Disabled for everyone
 
 #### Additional Protections
+
 - **Require linear history**: Enabled (to maintain clean git history)
 - **Require signed commits**: Recommended but not enforced initially
 - **Include administrators**: Enabled (administrators must follow the same rules)
@@ -41,15 +47,18 @@ The following status checks must pass before merging:
 ### Security Configuration
 
 #### Dependency Scanning
+
 - **Dependabot alerts**: Enabled
 - **Dependabot security updates**: Enabled
 - **Dependency review**: Required for pull requests
 
 #### Secret Scanning
+
 - **Secret scanning**: Enabled
 - **Push protection**: Enabled (prevents accidental secret commits)
 
 #### Code Scanning
+
 - **CodeQL analysis**: Enabled
 - Run on: Pull requests, pushes to main, and weekly schedule
 - Languages: TypeScript/JavaScript
@@ -77,6 +86,7 @@ The following status checks must pass before merging:
 ### When to Bypass Protection
 
 Branch protection should only be bypassed in true emergencies:
+
 - Critical security vulnerability requiring immediate hotfix
 - Production-breaking bug that needs urgent resolution
 - Infrastructure issue preventing normal PR workflow
@@ -127,6 +137,7 @@ Branch protection should only be bypassed in true emergencies:
 ## Tag Protection
 
 Version tags are also protected:
+
 - **Protected tag pattern**: `v*` (all version tags)
 - **Allowed to create**: `kdpa-llc/maintainers` team only
 - **Prevent tag deletion**: Enabled
@@ -136,17 +147,20 @@ This ensures release versions are immutable and traceable.
 ## Team Roles and Access
 
 ### Maintainers Team (`kdpa-llc/maintainers`)
+
 - Can approve and merge pull requests
 - Can create protected branches
 - Can create version tags
 - Subject to all protection rules (except administrators in emergencies)
 
 ### Core Team (`kdpa-llc/core-team`)
+
 - Code owners for source code
 - Reviews required for src/ changes
 - Cannot merge without maintainer approval
 
 ### Contributors
+
 - Can create pull requests
 - Can review code (non-binding)
 - Cannot push directly to protected branches
@@ -156,6 +170,7 @@ This ensures release versions are immutable and traceable.
 To verify branch protection is working correctly:
 
 1. **Test Direct Push** (should fail):
+
    ```bash
    git checkout main
    git commit --allow-empty -m "Test commit"
@@ -164,6 +179,7 @@ To verify branch protection is working correctly:
    ```
 
 2. **Test Force Push** (should fail):
+
    ```bash
    git push --force origin main
    # Expected: Error - force push not allowed
@@ -190,6 +206,7 @@ To verify branch protection is working correctly:
 ## Maintenance
 
 This document should be reviewed and updated:
+
 - When protection rules change
 - Quarterly as part of security review
 - After any emergency bypass incident

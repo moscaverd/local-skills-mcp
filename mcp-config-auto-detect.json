@@ -2,9 +2,7 @@
   "mcpServers": {
     "local-skills-auto": {
       "command": "node",
-      "args": [
-        "/absolute/path/to/local-skills-mcp/dist/index.js"
-      ]
+      "args": ["/absolute/path/to/local-skills-mcp/dist/index.js"]
     }
   }
 }

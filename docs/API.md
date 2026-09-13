@@ -24,10 +24,11 @@ The main MCP server class that handles client connections and manages the skill 
 #### Constructor
 
 ```typescript
-constructor()
+constructor();
 ```
 
 Creates a new LocalSkillsServer instance with the following behavior:
+
 - Initializes the MCP server with name and version from package.json
 - Creates a SkillLoader with all configured skill directories
 - Sets up request handlers for listing and calling tools
@@ -36,7 +37,7 @@ Creates a new LocalSkillsServer instance with the following behavior:
 **Example:**
 
 ```typescript
-import { LocalSkillsServer } from 'local-skills-mcp';
+import { LocalSkillsServer } from "local-skills-mcp";
 
 const server = new LocalSkillsServer();
 await server.run();
@@ -53,6 +54,7 @@ async run(): Promise<void>
 Starts the MCP server and connects it to stdio transport for communication.
 
 **Behavior:**
+
 - Creates a stdio transport for MCP communication
 - Connects the server to the transport
 - Logs server startup information to stderr
@@ -67,6 +69,7 @@ await server.run();
 ```
 
 **Output:**
+
 ```
 Local Skills MCP Server v0.1.0 running on stdio
 Aggregating skills from 3 directories:
@@ -90,16 +93,17 @@ constructor(skillsPaths: string[])
 Creates a new SkillLoader instance that monitors the specified directories.
 
 **Parameters:**
+
 - `skillsPaths` (string[]): Array of directory paths to search for skills
 
 **Example:**
 
 ```typescript
-import { SkillLoader } from 'local-skills-mcp';
+import { SkillLoader } from "local-skills-mcp";
 
 const loader = new SkillLoader([
-  '/home/user/.claude/skills',
-  '/home/user/project/skills'
+  "/home/user/.claude/skills",
+  "/home/user/project/skills",
 ]);
 ```
 
@@ -114,9 +118,11 @@ async discoverSkills(): Promise<string[]>
 Scans all configured directories and returns a list of available skill names.
 
 **Returns:**
+
 - Promise<string[]>: Sorted array of skill names
 
 **Behavior:**
+
 - Clears and rebuilds the internal skill registry
 - Scans each directory for subdirectories containing `SKILL.md`
 - Later directories override earlier ones for duplicate skill names
@@ -140,16 +146,20 @@ async loadSkill(skillName: string): Promise<Skill>
 Loads a specific skill by name, including its full content and metadata.
 
 **Parameters:**
+
 - `skillName` (string): The name of the skill to load
 
 **Returns:**
+
 - Promise<Skill>: Complete skill object with metadata and content
 
 **Throws:**
+
 - Error if skill is not found in the registry
 - Error if SKILL.md file cannot be read or parsed
 
 **Behavior:**
+
 - Checks cache first for previously loaded skills
 - Loads and parses the SKILL.md file
 - Validates YAML frontmatter
@@ -159,11 +169,11 @@ Loads a specific skill by name, including its full content and metadata.
 **Example:**
 
 ```typescript
-const skill = await loader.loadSkill('code-reviewer');
-console.log(skill.name);        // 'Code Reviewer'
+const skill = await loader.loadSkill("code-reviewer");
+console.log(skill.name); // 'Code Reviewer'
 console.log(skill.description); // 'Expert code review assistant'
-console.log(skill.content);     // Full skill prompt content
-console.log(skill.source);      // '/home/user/.claude/skills'
+console.log(skill.content); // Full skill prompt content
+console.log(skill.source); // '/home/user/.claude/skills'
 ```
 
 ##### getSkillMetadata()
@@ -175,22 +185,25 @@ async getSkillMetadata(skillName: string): Promise<SkillMetadata & { source: str
 Retrieves skill metadata without loading the full content (lightweight operation).
 
 **Parameters:**
+
 - `skillName` (string): The name of the skill
 
 **Returns:**
+
 - Promise<SkillMetadata & { source: string }>: Metadata with source directory
 
 **Throws:**
+
 - Error if skill is not found
 - Error if SKILL.md cannot be parsed
 
 **Example:**
 
 ```typescript
-const metadata = await loader.getSkillMetadata('code-reviewer');
-console.log(metadata.name);        // 'Code Reviewer'
+const metadata = await loader.getSkillMetadata("code-reviewer");
+console.log(metadata.name); // 'Code Reviewer'
 console.log(metadata.description); // 'Expert code review assistant'
-console.log(metadata.source);      // '/home/user/.claude/skills'
+console.log(metadata.source); // '/home/user/.claude/skills'
 // Note: metadata.content is NOT included (saves memory)
 ```
 
@@ -203,6 +216,7 @@ getSkillsPaths(): string[]
 Returns the array of directories being monitored for skills.
 
 **Returns:**
+
 - string[]: Array of skill directory paths
 
 **Example:**
@@ -223,11 +237,11 @@ Complete skill definition including metadata and content.
 
 ```typescript
 interface Skill {
-  name: string;        // Display name from YAML frontmatter
+  name: string; // Display name from YAML frontmatter
   description: string; // Description from YAML frontmatter
-  content: string;     // Full markdown content after frontmatter
-  path: string;        // Absolute path to skill directory
-  source: string;      // Source directory (which skills path)
+  content: string; // Full markdown content after frontmatter
+  path: string; // Absolute path to skill directory
+  source: string; // Source directory (which skills path)
 }
 ```
 
@@ -243,11 +257,11 @@ interface Skill {
 
 ```typescript
 const skill: Skill = {
-  name: 'Code Reviewer',
-  description: 'Expert code review assistant',
-  content: '# Instructions\n\nYou are an expert code reviewer...',
-  path: '/home/user/.claude/skills/code-reviewer',
-  source: '/home/user/.claude/skills'
+  name: "Code Reviewer",
+  description: "Expert code review assistant",
+  content: "# Instructions\n\nYou are an expert code reviewer...",
+  path: "/home/user/.claude/skills/code-reviewer",
+  source: "/home/user/.claude/skills",
 };
 ```
 
@@ -259,7 +273,7 @@ Metadata extracted from SKILL.md YAML frontmatter.
 
 ```typescript
 interface SkillMetadata {
-  name: string;        // Skill display name
+  name: string; // Skill display name
   description: string; // Brief description
 }
 ```
@@ -282,8 +296,8 @@ description: Expert code review assistant with focus on best practices
 
 ```typescript
 const metadata: SkillMetadata = {
-  name: 'Code Reviewer',
-  description: 'Expert code review assistant with focus on best practices'
+  name: "Code Reviewer",
+  description: "Expert code review assistant with focus on best practices",
 };
 ```
 
@@ -294,15 +308,17 @@ const metadata: SkillMetadata = {
 ### getAllSkillsDirectories()
 
 ```typescript
-export function getAllSkillsDirectories(): string[]
+export function getAllSkillsDirectories(): string[];
 ```
 
 Determines all directories to scan for skills based on standard locations and environment variables.
 
 **Returns:**
+
 - string[]: Array of directory paths in priority order
 
 **Behavior:**
+
 - Checks for `~/.claude/skills` (user-level Claude skills)
 - Checks for `{cwd}/.claude/skills` (project-level Claude skills)
 - Checks for `{cwd}/skills` (default project skills)
@@ -311,6 +327,7 @@ Determines all directories to scan for skills based on standard locations and en
 - Returns at least one path (default: `{cwd}/skills`)
 
 **Priority Order for Duplicate Skills:**
+
 1. `SKILLS_DIR` environment variable (highest priority)
 2. `{cwd}/skills`
 3. `{cwd}/.claude/skills`
@@ -319,7 +336,7 @@ Determines all directories to scan for skills based on standard locations and en
 **Example:**
 
 ```typescript
-import { getAllSkillsDirectories } from 'local-skills-mcp';
+import { getAllSkillsDirectories } from "local-skills-mcp";
 
 const dirs = getAllSkillsDirectories();
 console.log(dirs);
@@ -364,7 +381,7 @@ Retrieves a skill's content and metadata.
 
 ```typescript
 {
-  skill_name: string  // Required: name of the skill to retrieve
+  skill_name: string; // Required: name of the skill to retrieve
 }
 ```
 
@@ -372,10 +389,12 @@ Retrieves a skill's content and metadata.
 
 ```typescript
 {
-  content: [{
-    type: 'text',
-    text: string  // Formatted skill output with metadata and content
-  }]
+  content: [
+    {
+      type: "text",
+      text: string, // Formatted skill output with metadata and content
+    },
+  ];
 }
 ```
 
@@ -446,6 +465,7 @@ Error: SKILL.md must start with YAML frontmatter (---)
 **Cause:** SKILL.md file doesn't begin with `---` delimiter
 
 **Solution:** Ensure SKILL.md follows the correct format:
+
 ```markdown
 ---
 name: Skill Name
@@ -464,6 +484,7 @@ Error: SKILL.md frontmatter must include "name" field
 **Cause:** YAML frontmatter is missing required `name` or `description`
 
 **Solution:** Add both required fields to frontmatter:
+
 ```yaml
 ---
 name: My Skill
@@ -478,6 +499,7 @@ description: What this skill does
 ### Skill Organization
 
 1. **Directory Structure:**
+
    ```
    skills/
    ├── code-reviewer/
@@ -489,6 +511,7 @@ description: What this skill does
    ```
 
 2. **SKILL.md Format:**
+
    ```markdown
    ---
    name: Clear Descriptive Name
@@ -512,6 +535,7 @@ description: What this skill does
 ### Error Recovery
 
 The system is designed to be resilient:
+
 - Non-existent directories are silently skipped
 - Malformed skills don't prevent other skills from loading
 - Directory scan errors are logged but don't crash the server
@@ -532,33 +556,33 @@ Types are included in the package - no separate @types package needed.
 
 ```typescript
 // Import main server
-import { LocalSkillsServer } from 'local-skills-mcp';
+import { LocalSkillsServer } from "local-skills-mcp";
 
 // Import utilities
-import { getAllSkillsDirectories } from 'local-skills-mcp';
+import { getAllSkillsDirectories } from "local-skills-mcp";
 
 // Import types
-import type { Skill, SkillMetadata } from 'local-skills-mcp';
+import type { Skill, SkillMetadata } from "local-skills-mcp";
 
 // Import loader (for custom usage)
-import { SkillLoader } from 'local-skills-mcp';
+import { SkillLoader } from "local-skills-mcp";
 ```
 
 ### Custom Integration Example
 
 ```typescript
-import { SkillLoader } from 'local-skills-mcp';
-import type { Skill } from 'local-skills-mcp';
+import { SkillLoader } from "local-skills-mcp";
+import type { Skill } from "local-skills-mcp";
 
 // Create custom loader
-const loader = new SkillLoader(['/custom/path']);
+const loader = new SkillLoader(["/custom/path"]);
 
 // Discover available skills
 const skills = await loader.discoverSkills();
-console.log('Available skills:', skills);
+console.log("Available skills:", skills);
 
 // Load a specific skill
-const skill: Skill = await loader.loadSkill('my-skill');
+const skill: Skill = await loader.loadSkill("my-skill");
 
 // Use the skill content
 console.log(skill.name);

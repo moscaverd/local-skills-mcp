@@ -16,6 +16,8 @@ permissions:
 
 jobs:
   release:
+    # Only the canonical organization repository may publish this shared identity.
+    if: github.repository == 'kdpa-llc/local-skills-mcp'
     name: Release
     runs-on: ubuntu-latest
 
