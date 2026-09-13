@@ -4,7 +4,7 @@ Get up and running with Local Skills MCP in 5 minutes!
 
 ## Prerequisites
 
-- Node.js 18+ installed
+- Node.js 20+ installed
 - Claude Code or another MCP-compatible client
 
 ## Installation
@@ -32,32 +32,32 @@ Add the MCP server to your Claude Code configuration file:
 **Location:** `~/.config/claude-code/mcp.json` (Linux/Mac) or `%APPDATA%/claude-code/mcp.json` (Windows)
 
 **Option A: Auto-detect skills directory (Recommended)**
+
 ```json
 {
   "mcpServers": {
     "local-skills": {
       "command": "node",
-      "args": [
-        "/full/path/to/local-skills-mcp/dist/index.js"
-      ]
+      "args": ["/full/path/to/local-skills-mcp/dist/index.js"]
     }
   }
 }
 ```
+
 The server will automatically find skills in this priority order:
+
 1. `~/.claude/skills/` (if exists)
 2. `./.claude/skills/` (if exists)
 3. `./skills` (fallback)
 
 **Option B: Explicit skills directory**
+
 ```json
 {
   "mcpServers": {
     "local-skills": {
       "command": "node",
-      "args": [
-        "/full/path/to/local-skills-mcp/dist/index.js"
-      ],
+      "args": ["/full/path/to/local-skills-mcp/dist/index.js"],
       "env": {
         "SKILLS_DIR": "/full/path/to/local-skills-mcp/skills"
       }
@@ -65,6 +65,7 @@ The server will automatically find skills in this priority order:
   }
 }
 ```
+
 Use this if you want to explicitly specify where skills are stored.
 
 **Important:** Replace `/full/path/to/local-skills-mcp` with the actual absolute path to where you cloned the repository.
@@ -155,11 +156,13 @@ You are an expert at [domain].
 Your task is to [specific task].
 
 Guidelines:
+
 1. First guideline
 2. Second guideline
 ```
 
 **Required:**
+
 - YAML frontmatter between `---` markers
 - `name` field (lowercase, hyphens allowed)
 - `description` field
@@ -172,6 +175,7 @@ Guidelines:
 **Symptom:** Claude says it doesn't have access to local-skills tools
 
 **Solution:**
+
 1. Check the path in `mcp.json` is correct and absolute
 2. Verify `dist/index.js` exists: `ls dist/index.js`
 3. Rebuild if needed: `npm run build`
@@ -182,6 +186,7 @@ Guidelines:
 **Symptom:** `list_skills` returns "No skills found"
 
 **Solution:**
+
 1. Check `SKILLS_DIR` path is correct
 2. Verify skills directory exists: `ls skills/`
 3. Check example skills are present: `ls skills/code-reviewer/SKILL.md`
@@ -191,7 +196,8 @@ Guidelines:
 **Symptom:** `npm install` or `npm run build` fails
 
 **Solution:**
-1. Check Node.js version: `node --version` (should be 18+)
+
+1. Check Node.js version: `node --version` (should be 20+)
 2. Remove node_modules: `rm -rf node_modules`
 3. Clear npm cache: `npm cache clean --force`
 4. Reinstall: `npm install`
@@ -201,6 +207,7 @@ Guidelines:
 **Symptom:** Skill fails to load with YAML error
 
 **Solution:**
+
 1. Ensure SKILL.md starts with `---\n`
 2. Ensure frontmatter ends with `\n---\n`
 3. Check YAML syntax (no tabs, proper format)

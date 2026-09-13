@@ -34,7 +34,7 @@ Welcome to the local-skills-mcp development guide! This document will help you g
 ### Check Your Setup
 
 ```bash
-node --version   # Should be >= 18.0.0
+node --version   # Use 22.14+ or 24.10+ for development tooling
 npm --version    # Should be >= 9.0.0
 git --version    # Any recent version
 ```
@@ -57,6 +57,7 @@ npm install
 ```
 
 This will:
+
 - Install all dependencies
 - Run the `prepare` script which builds the TypeScript code
 - Create the `dist/` directory with compiled JavaScript
@@ -219,15 +220,15 @@ npm run test:ui
 **Example Unit Test:**
 
 ```typescript
-import { describe, it, expect } from 'vitest';
-import { SkillLoader } from './skill-loader.js';
+import { describe, it, expect } from "vitest";
+import { SkillLoader } from "./skill-loader.js";
 
-describe('SkillLoader', () => {
-  it('should discover skills in directory', async () => {
-    const loader = new SkillLoader(['./test-skills']);
+describe("SkillLoader", () => {
+  it("should discover skills in directory", async () => {
+    const loader = new SkillLoader(["./test-skills"]);
     const skills = await loader.discoverSkills();
 
-    expect(skills).toContain('test-skill');
+    expect(skills).toContain("test-skill");
   });
 });
 ```
@@ -235,17 +236,17 @@ describe('SkillLoader', () => {
 **Example Integration Test:**
 
 ```typescript
-import { describe, it, expect, beforeEach } from 'vitest';
-import { LocalSkillsServer } from './index.js';
+import { describe, it, expect, beforeEach } from "vitest";
+import { LocalSkillsServer } from "./index.js";
 
-describe('LocalSkillsServer Integration', () => {
+describe("LocalSkillsServer Integration", () => {
   let server: LocalSkillsServer;
 
   beforeEach(() => {
     server = new LocalSkillsServer();
   });
 
-  it('should handle get_skill request', async () => {
+  it("should handle get_skill request", async () => {
     // Test server request handling
   });
 });
@@ -306,8 +307,8 @@ Create `.vscode/launch.json`:
 
 ```typescript
 // Add debug logs (stderr for MCP compatibility)
-console.error('[DEBUG] Loading skill:', skillName);
-console.error('[DEBUG] Cache size:', this.skillCache.size);
+console.error("[DEBUG] Loading skill:", skillName);
+console.error("[DEBUG] Cache size:", this.skillCache.size);
 ```
 
 #### 2. VS Code Breakpoints
@@ -343,16 +344,19 @@ tail -f server.log
 ### Common Debug Scenarios
 
 **Skill not loading:**
+
 1. Check if SKILL.md exists: `ls skills/skill-name/SKILL.md`
 2. Verify YAML frontmatter format
 3. Check server logs for parse errors
 
 **MCP connection issues:**
+
 1. Verify `dist/index.js` exists and is executable
 2. Check MCP client configuration
 3. Review stdio communication in logs
 
 **Caching issues:**
+
 1. Restart server to clear cache
 2. Check `skillCache` contents with debug logs
 3. Verify `discoverSkills()` is called before `loadSkill()`
@@ -412,17 +416,19 @@ Use descriptive error messages with context:
 
 ```typescript
 // ✅ Good: Descriptive with context
-throw new Error(`Skill "${skillName}" not found. Run list_skills to see available skills.`);
+throw new Error(
+  `Skill "${skillName}" not found. Run list_skills to see available skills.`
+);
 
 // ❌ Bad: Generic message
-throw new Error('Not found');
+throw new Error("Not found");
 ```
 
 #### 4. Documentation
 
 Use JSDoc for all public APIs:
 
-```typescript
+````typescript
 /**
  * Load a specific skill by name with lazy loading and caching.
  *
@@ -438,7 +444,7 @@ Use JSDoc for all public APIs:
 async function loadSkill(skillName: string): Promise<Skill> {
   // ...
 }
-```
+````
 
 #### 5. Async/Await
 
@@ -447,14 +453,13 @@ Prefer async/await over promises:
 ```typescript
 // ✅ Good: async/await
 async function loadSkill(skillName: string): Promise<Skill> {
-  const content = await fs.readFile(path, 'utf-8');
+  const content = await fs.readFile(path, "utf-8");
   return parseSkill(content);
 }
 
 // ❌ Bad: Promise chains
 function loadSkill(skillName: string): Promise<Skill> {
-  return fs.readFile(path, 'utf-8')
-    .then(content => parseSkill(content));
+  return fs.readFile(path, "utf-8").then((content) => parseSkill(content));
 }
 ```
 
@@ -464,21 +469,21 @@ function loadSkill(skillName: string): Promise<Skill> {
 
 ```typescript
 // 1. Imports (external first, then internal)
-import fs from 'fs/promises';
-import path from 'path';
-import { Skill } from './types.js';
+import fs from "fs/promises";
+import path from "path";
+import { Skill } from "./types.js";
 
 // 2. Constants
-const VERSION = '0.1.0';
+const VERSION = "0.1.0";
 
 // 3. Type definitions (if not in separate file)
-interface Config { }
+interface Config {}
 
 // 4. Functions (utility functions first)
-function helperFunction() { }
+function helperFunction() {}
 
 // 5. Classes
-export class MainClass { }
+export class MainClass {}
 
 // 6. Main execution (if applicable)
 if (import.meta.url === `file://${process.argv[1]}`) {
@@ -488,7 +493,8 @@ if (import.meta.url === `file://${process.argv[1]}`) {
 
 ### Linting (Future)
 
-*Note: Linting configuration coming soon. Planned tools:*
+_Note: Linting configuration coming soon. Planned tools:_
+
 - ESLint with TypeScript plugin
 - Prettier for formatting
 - Pre-commit hooks with Husky
@@ -500,21 +506,24 @@ if (import.meta.url === `file://${process.argv[1]}`) {
 ### Adding a New Feature
 
 1. **Create a feature branch**:
+
    ```bash
    git checkout -b feature/my-new-feature
    ```
 
 2. **Write tests first** (TDD approach):
+
    ```typescript
    // src/my-feature.test.ts
-   describe('MyFeature', () => {
-     it('should do something', () => {
+   describe("MyFeature", () => {
+     it("should do something", () => {
        // Test implementation
      });
    });
    ```
 
 3. **Implement the feature**:
+
    ```typescript
    // src/my-feature.ts
    export function myFeature() {
@@ -528,6 +537,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
    - Add JSDoc comments
 
 5. **Test thoroughly**:
+
    ```bash
    npm run test:run
    npm run test:coverage
@@ -543,16 +553,18 @@ if (import.meta.url === `file://${process.argv[1]}`) {
 ### Debugging a Failing Test
 
 1. **Run the specific test**:
+
    ```bash
    npm test -- skill-loader.test.ts
    ```
 
 2. **Add debug output**:
+
    ```typescript
-   it('should load skill', async () => {
-     console.log('Test data:', testData);
-     const result = await loadSkill('test');
-     console.log('Result:', result);
+   it("should load skill", async () => {
+     console.log("Test data:", testData);
+     const result = await loadSkill("test");
+     console.log("Result:", result);
      expect(result).toBeDefined();
    });
    ```
@@ -600,6 +612,7 @@ start docs/api/index.html  # Windows
 **Problem**: Changes in TypeScript not reflected in execution.
 
 **Solution**: Always build after changes:
+
 ```bash
 npm run build
 # Or use watch mode
@@ -611,13 +624,15 @@ npm run watch
 **Problem**: TypeScript imports without .js extension fail at runtime.
 
 **Correct**:
+
 ```typescript
-import { Skill } from './types.js';  // ✅ With .js
+import { Skill } from "./types.js"; // ✅ With .js
 ```
 
 **Incorrect**:
+
 ```typescript
-import { Skill } from './types';     // ❌ No extension
+import { Skill } from "./types"; // ❌ No extension
 ```
 
 ### 3. Async Error Handling
@@ -625,10 +640,11 @@ import { Skill } from './types';     // ❌ No extension
 **Problem**: Unhandled promise rejections.
 
 **Solution**: Always use try/catch with async:
+
 ```typescript
 async function loadSkill(name: string) {
   try {
-    const content = await fs.readFile(path, 'utf-8');
+    const content = await fs.readFile(path, "utf-8");
     return parseSkill(content);
   } catch (error) {
     throw new Error(`Failed to load skill: ${error.message}`);
@@ -641,12 +657,13 @@ async function loadSkill(name: string) {
 **Problem**: console.log() interferes with MCP protocol.
 
 **Solution**: Use console.error() for logging:
+
 ```typescript
 // ✅ Good: stderr
-console.error('Debug info:', data);
+console.error("Debug info:", data);
 
 // ❌ Bad: stdout (conflicts with MCP)
-console.log('Debug info:', data);
+console.log("Debug info:", data);
 ```
 
 ### 5. Testing with Cached Skills
@@ -654,6 +671,7 @@ console.log('Debug info:', data);
 **Problem**: Cached data from previous test runs.
 
 **Solution**: Clear cache in beforeEach:
+
 ```typescript
 beforeEach(() => {
   loader = new SkillLoader([testDir]);
@@ -666,14 +684,16 @@ beforeEach(() => {
 **Problem**: Unsafe type assertions hiding errors.
 
 **Avoid**:
+
 ```typescript
-const skill = data as Skill;  // Unsafe
+const skill = data as Skill; // Unsafe
 ```
 
 **Better**:
+
 ```typescript
 if (!isValidSkill(data)) {
-  throw new Error('Invalid skill format');
+  throw new Error("Invalid skill format");
 }
 const skill: Skill = data;
 ```
