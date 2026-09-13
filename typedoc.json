@@ -26,19 +26,8 @@
     "Type alias"
   ],
   "categorizeByGroup": true,
-  "categoryOrder": [
-    "Core Classes",
-    "Interfaces",
-    "Functions",
-    "*"
-  ],
-  "groupOrder": [
-    "Classes",
-    "Interfaces",
-    "Type Aliases",
-    "Functions",
-    "*"
-  ],
+  "categoryOrder": ["Core Classes", "Interfaces", "Functions", "*"],
+  "groupOrder": ["Classes", "Interfaces", "Type Aliases", "Functions", "*"],
   "visibilityFilters": {
     "protected": false,
     "private": false,

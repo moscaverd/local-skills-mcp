@@ -87,6 +87,7 @@ When using Local Skills MCP:
 ## Security Updates
 
 Security updates will be:
+
 - Released as patch versions (e.g., 0.1.1)
 - Documented in CHANGELOG.md
 - Announced in the release notes
