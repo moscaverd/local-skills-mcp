@@ -111,6 +111,6 @@ jobs:
           name: packed-runtime
           path: package-artifact
       - name: Install published dependencies only
-        run: npm install --prefix .tmp/runtime --ignore-scripts --no-audit --no-fund package-artifact/*.tgz
+        run: npm install --prefix .tmp/runtime --ignore-scripts --no-audit --no-fund "$PWD"/package-artifact/*.tgz
       - name: Verify real MCP lifecycle from the tarball
         run: node scripts/smoke-package.mjs .tmp/runtime/node_modules/local-skills-mcp
