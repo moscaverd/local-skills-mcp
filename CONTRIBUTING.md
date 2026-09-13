@@ -7,6 +7,7 @@ Thank you for your interest in contributing to Local Skills MCP! We welcome cont
 ### Reporting Bugs
 
 If you find a bug, please open an issue on GitHub with:
+
 - A clear, descriptive title
 - Steps to reproduce the issue
 - Expected behavior
@@ -17,6 +18,7 @@ If you find a bug, please open an issue on GitHub with:
 ### Suggesting Features
 
 We welcome feature suggestions! Please open an issue with:
+
 - A clear description of the feature
 - The problem it solves
 - Any examples or use cases
@@ -25,6 +27,7 @@ We welcome feature suggestions! Please open an issue with:
 ### Pull Requests
 
 1. **Fork the repository** and create your branch from `main`
+
    ```bash
    git checkout -b feature/your-feature-name
    ```
@@ -36,6 +39,7 @@ We welcome feature suggestions! Please open an issue with:
    - Update documentation as needed
 
 3. **Test your changes**
+
    ```bash
    npm install
    npm run build
@@ -47,6 +51,10 @@ We welcome feature suggestions! Please open an issue with:
    - Ensure CI checks pass
 
 ## Development Setup
+
+Use Node.js 22.14+ (22 LTS recommended) or 24.10+ for development and release tooling. The published server requires Node.js 20+ for its patched production dependency graph; CI tests its npm tarball separately on Node 20, 22, and 24 without development dependencies. This separates application compatibility from the stricter engines of Vitest and semantic-release.
+
+Tests use temporary skill directories and isolate subprocess home lookups; they must not read or alter a contributor's real skill library. Evaluator tests mock external Python and Claude processes.
 
 ```bash
 # Clone your fork
@@ -192,6 +200,7 @@ For manual verification:
 ## Documentation
 
 When adding features or changing functionality:
+
 - Update README.md
 - Update QUICK_START.md if needed
 - Add/update code comments
