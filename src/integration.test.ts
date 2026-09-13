@@ -363,13 +363,8 @@ It provides different guidance.`
     });
 
     it("should include source directory in skill output", async () => {
-      // Skip if no skills available
-      if (availableSkills.length === 0) {
-        expect(true).toBe(true);
-        return;
-      }
-
-      const skillToTest = availableSkills[0];
+      expect(availableSkills).toContain("test-skill-1");
+      const skillToTest = "test-skill-1";
 
       const response = await client.callTool({
         name: "get_skill",
@@ -379,9 +374,7 @@ It provides different guidance.`
       });
 
       const text = (response.content as any[])[0].text;
-      expect(text).toContain("**Source:**");
-      // Should contain some path
-      expect(text).toMatch(/\/.*skills/);
+      expect(text).toContain(`**Source:** ${skillsDir}`);
     });
   });
 
