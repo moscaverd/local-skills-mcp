@@ -460,4 +460,73 @@ This is the content that should not be loaded`
       expect(loader.getSkillsPaths()).toEqual(paths);
     });
   });
+  describe("lazy registry resolution", () => {
+    async function writeSkill(dir: string, name: string, description: string) {
+      const skillPath = path.join(dir, name);
+      await fs.mkdir(skillPath, { recursive: true });
+      await fs.writeFile(
+        path.join(skillPath, "SKILL.md"),
+        `---\nname: ${name}\ndescription: ${description}\n---\n\n${name} body\n`
+      );
+    }
+
+    it("should load a skill without a prior discoverSkills() call", async () => {
+      await writeSkill(tempDir, "cold-start", "Loaded without listing first");
+      skillLoader = new SkillLoader([tempDir]);
+
+      // No discoverSkills() here: MCP clients may call a tool without
+      // first listing tools, e.g. when reusing a cached tool list.
+      const skill = await skillLoader.loadSkill("cold-start");
+
+      expect(skill.name).toBe("cold-start");
+      expect(skill.content).toContain("cold-start body");
+    });
+
+    it("should read metadata without a prior discoverSkills() call", async () => {
+      await writeSkill(tempDir, "cold-meta", "Metadata without listing first");
+      skillLoader = new SkillLoader([tempDir]);
+
+      const metadata = await skillLoader.getSkillMetadata("cold-meta");
+
+      expect(metadata.name).toBe("cold-meta");
+      expect(metadata.source).toBe(tempDir);
+    });
+
+    it("should pick up a skill added after the last discovery", async () => {
+      await writeSkill(tempDir, "first", "Present at discovery time");
+      skillLoader = new SkillLoader([tempDir]);
+      await skillLoader.discoverSkills();
+
+      await writeSkill(tempDir, "second", "Added after discovery");
+
+      const skill = await skillLoader.loadSkill("second");
+      expect(skill.name).toBe("second");
+    });
+
+    it("should list available skills in the not-found error", async () => {
+      await writeSkill(tempDir, "alpha", "First available skill");
+      await writeSkill(tempDir, "beta", "Second available skill");
+      skillLoader = new SkillLoader([tempDir]);
+
+      await expect(skillLoader.loadSkill("gamma")).rejects.toThrow(
+        'Skill "gamma" not found. Available skills: alpha, beta'
+      );
+    });
+
+    it("should report the searched directories when nothing was discovered", async () => {
+      skillLoader = new SkillLoader([tempDir]);
+
+      await expect(skillLoader.loadSkill("anything")).rejects.toThrow(
+        `No skills were discovered in: ${tempDir}`
+      );
+    });
+
+    it("should report a missing configuration when no directories are set", async () => {
+      skillLoader = new SkillLoader([]);
+
+      await expect(skillLoader.loadSkill("anything")).rejects.toThrow(
+        "(no directories configured)"
+      );
+    });
+  });
 });
